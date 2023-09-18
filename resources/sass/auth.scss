@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital@1&family=Pacifico&family=Poppins&display=swap');
+html{
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+*,*::before,*::after{
+    box-sizing: inherit;
+}
+body{
+    padding: 0;
+    margin: 0;
+    min-width: 100vw;
+    min-height: 100vh;
+    font-size: 1.6rem;
+}
+p{
+    margin: 0;
+}
+img{
+    width: 100%;
+}
+.container{
+    // width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('/public/img/fondo-login.png');
+    background-size: 100% 100%;
+    // background-image: url('https://img.freepik.com/foto-gratis/primer-tiro-angulo-alto-taza-cafe-algunas-decoraciones-mesa-blanca_181624-18575.jpg?w=740&t=st=1694156197~exp=1694156797~hmac=4d8442ba22377d225b50d89f26cfe39cac12507b248cf7bf0ad4bbc208148f62');
+    // background-image: url('https://img.freepik.com/foto-gratis/pequenas-flores-cerca-tetera-bebida_23-2147759322.jpg?w=740&t=st=1694200226~exp=1694200826~hmac=e73ffc445169a668d8934f9f8a754e1a526a5882f43ca96ad0bd06dfbb1cb6af');
+    
+    .right{
+        flex: 0 0 calc(100%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        // background-color: beige;
+        form{
+            flex: 0 0 calc(50rem);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: -1px 0px 9px -4px rgba(0,0,0,1);
+            gap: 2rem;
+            .btn-auth{
+                display: flex;
+                gap: 2rem;
+                font-size: 2rem;
+                font-family: 'Libre Baskerville', serif;
+                a{
+                    text-decoration: none;
+                    color: #a26d50;
+                    // transition: .3s ease;
+                    &:hover{
+                        scale: 1.1;
+                        // font-weight: bold;
+                        // letter-spacing: .1rem;
+                    }
+                }
+            }
+            .contenedor-inputs{
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                gap: 1rem;
+                .input{
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    position: relative;
+                    input{
+                        width: 90%;
+                        border: none;
+                        // background-color: rgba(162, 109, 80, .3);
+                        background-color: rgba(178, 186, 187, .3);
+                        padding: 1.5rem 5rem;
+                        font-size: 1.6rem;
+                        outline: none;
+                        // font-family: 'Libre Baskerville', serif;
+                        // font-family: 'Pacifico', cursive;
+                        font-family: 'Poppins', sans-serif;
+                    }
+                    i{
+                        position: absolute;
+                        color: #a26d50;
+                        left: 8%;
+                    }
+                    textarea{
+                        min-width: 90%;
+                        max-width: 1rem;
+                        min-height: 10rem;
+                        max-height: 20rem;
+                        padding: 1rem;
+                        font-size: 1.6rem;
+                        outline: 1px solid #a26d50;
+                        font-family: 'Poppins', sans-serif;
+                    }
+                }
+            }
+            .btn-enviar{
+                border: 1px solid beige;
+                color: beige;
+                background-color: #a26d50;
+                padding: 1rem 2rem;
+                cursor: pointer;
+                font-size: 1.7rem;
+                font-family: 'Libre Baskerville', serif;
+                transition: .3s ease;
+                &:hover{
+                    background-color: #90593c;
+                    box-shadow: 8px 11px 0px -2px rgba(194,148,122,1);
+                }
+            }
+            .ultimos-datos{
+                display: flex;
+                gap: 2rem;
+                font-family: 'Poppins', sans-serif;
+                .recordar{
+                    label{
+                        color: #a26d50;
+                        &:hover{
+                            color: #6d4733;
+                        }
+                    }
+                }
+                a{
+                    color: #a26d50;
+                    &:hover{
+                        color: #6d4733;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,253 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital@1&family=Pacifico&family=Poppins&display=swap');
+
+html{
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+*,*::before,*::after{
+    box-sizing: inherit;
+}
+body{
+    padding: 0;
+    margin: 0;
+    font-size: 1.6rem;
+    font-family: 'Kantumruy Pro', sans-serif;
+}
+p{
+    margin: 0;
+}
+img{
+    width: 100%;
+}
+main{
+    display: flex;
+    .izq{
+        transition: .3s ease;
+        flex: 0 0 calc(15%);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 3rem;
+        padding: 2rem;
+        background-color: #2d3037;
+        .toggle{
+            width: 6rem;
+            height: 3rem;
+            // background-color: white;
+            border: 1px solid white;
+            border-radius: 1.5rem;
+            text-align: center;
+            position: relative;
+            span{
+                position: absolute;
+                width: 3rem;
+                height: 100%;
+                background-color: white;
+                border-radius: 50%;
+                cursor: pointer;
+                transition: .3s ease;
+                &.activo{
+                    transform: translateX(-100%);
+                    background-color: gray;
+                }
+            }
+        }
+        .iconos{
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            a{
+                text-decoration: none;
+                color: white;
+                transition: .3s ease;
+                // font-family: 'Libre Baskerville', serif;
+                // font-family: 'Pacifico', cursive;
+                font-family: 'Poppins', sans-serif;
+                display: flex;
+                gap: 1.5rem;
+                opacity: .6;
+                &.activo{
+                    gap: 0;
+                }
+                i{
+                    scale: 1.2;
+                    transition: .3s ease;
+                    &.activo{
+                        scale: 2;
+                        &:hover{
+                            transform: rotate(30deg);
+                        }
+                    }
+                }
+                span{
+                    transition: .3s ease;
+                    &.activo{
+                        font-size: 0;
+                    }
+                }
+                &:hover span{
+                    transform: translateY(.3rem);
+                }
+                &:hover{
+                    opacity: 1;
+                }
+            }
+        }
+        .icono-cerrar-sesion{
+            position: absolute;
+            bottom: 10%;
+            color: white;
+            opacity: .5;
+            transition: .3s ease;
+            i{
+                scale: 2;
+            }
+            &:hover{
+                opacity: 1;
+            }
+        }
+    }
+
+    .der{
+        transition: .3s ease;
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        // align-items: center;
+        background-color: #E5E8E8;
+        padding: 2rem;
+        .container{
+            flex: 1;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            border: 1px solid #2d3037;
+            // border-radius: .5rem;
+            .crear{
+                padding: 1rem;
+                display: flex;
+                flex-direction: column;
+                gap: 2rem;
+                .encabezado-form{
+                    font-size: 2rem;
+                    font-weight: bold;
+                    opacity: .6;
+                    display: flex;
+                    justify-content: space-between;
+                    font-family: 'Libre Baskerville', serif;
+                }
+                form{
+                    // box-shadow: -1px 1px 9px -1px rgba(0,0,0,0.46);
+                    display: flex;
+                    flex-direction: column;
+                    // justify-content: center;
+                    // align-items: center;
+                    gap: 2rem;
+                    font-family: 'Poppins', sans-serif;
+                    padding: 0 1rem;
+                    .contenedor-inputs{
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: 2rem;
+                        .input{
+                            flex: 0 0 calc(30%);
+                            display: flex;
+                            flex-direction: column;
+                            input{
+                                padding: .7rem;
+                                font-size: 1.6rem;
+                                font-family: 'Poppins', sans-serif;
+                            }
+                        }
+                    }
+                    .contenedor-btn{
+                        button{
+                            padding: .7rem 1rem;
+                            font-size: 1.5rem;
+                            font-family: 'Libre Baskerville', serif;
+                            border: 1px solid #2d3037;
+                            transition: .3s ease;
+                            cursor: pointer;
+                            background-color: #2d3037;
+                            color: white;
+                            border: 1px solid white;
+                            &:hover{
+                                background-color: rgba(45, 48, 55, .9);
+                                box-shadow: 8px 11px 0px -2px rgba(194,148,122,1);
+                            }
+                        }
+                    }
+                }
+            }
+
+            .tabla{
+                padding: 1rem;
+                .encabezado-tabla{
+                    font-size: 2rem;
+                    font-weight: bold;
+                    opacity: .6;
+                    display: flex;
+                    justify-content: space-between;
+                    font-family: 'Libre Baskerville', serif;
+                }
+                table{
+                    width: 100%;
+                    padding: 1rem;
+                    text-align: center;
+                    // box-shadow: -1px 5px 9px -1px rgba(0,0,0,0.46);
+                    thead tr td{
+                        background-color: #2d3037;
+                        color: white;
+                        padding: 1rem;
+                        border-radius: .5rem 0 .5rem 0;
+                        font-weight: bold;
+                    }
+                    tbody tr td{
+                        border-left: 1px solid;
+                        border-bottom: 1px solid;
+                        font-family: 'Poppins', sans-serif;
+                        &.acciones{
+                            display: flex;
+                            justify-content: center;
+                            // align-items: center;
+                            gap: 1rem;
+                            button{
+                                background-color: white;
+                                border: none;
+                                font-size: 2rem;
+                                cursor: pointer;
+                                border: 1px solid white;
+                                transition: .3s ease;
+                            }
+                            .btn-editar{
+                                padding: .5rem .9rem;
+                                color: #0B5345;
+                                &:hover{
+                                    color: #117A65;
+                                    border: 1px solid #117A65;
+                                    border-radius: .5rem;
+                                }
+                            }
+                            form{
+                                margin: 0;
+                                display: flex;
+                                .btn-borrar{
+                                    padding: .5rem .9rem;
+                                    border: 1px solid white;
+                                    color: #922B21;
+                                    &:hover{
+                                        color: #C0392B;
+                                        border: 1px solid #C0392B;
+                                        border-radius: .5rem;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

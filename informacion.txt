@@ -1,0 +1,32 @@
+Usuario dueño de Cafes
+-> Dasboard
+	-> Cantidad de cafes
+	-> Cantidad de reservaciones
+	-> Grafico de reservaciones
+-> Crear/editar Cafes
+-> Crear/editar Notificaciones
+-> Crear/editar Imagenes/Videos
+-> Crear/editar Banner
+-> Crear/editar Otros-Cafe
+-> Listado de reservaciones: por defecto las dia de hoy, capacidad de filtro de otras fechas
+	Fecha
+	Usuario
+	Cantidad de personas
+	Eliminar Reservaciones
+-> Comentarios
+	-> Eliminar Malos comentarios: Visible=false
+	-> No se actuliza la valoración
+
+
+Usuario de la aplicacion
+-> Crear Reservas: 
+	Listado de Cafes
+	Banner
+	Notificaciones
+-> Cancelar Reservas
+-> Crear Comentarios
+-> Histórico de sus reservas
+
+
+Usuario Administrador
+-> Todo
