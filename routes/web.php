@@ -6,6 +6,7 @@ use App\Http\Controllers\auth\LogoutController;
 use App\Http\Controllers\auth\RegisterController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\CafeController;
+use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\ImagenesVideoController;
 use App\Http\Controllers\NotificacioneController;
 use App\Http\Controllers\OtroCafeController;
@@ -54,8 +55,11 @@ Route::post('/panel/banner', [BannerController::class, 'store'])->name('banner.s
 Route::patch('/panel/banner/{id}', [BannerController::class, 'update']);
 Route::delete('/panel/banner/{id}', [BannerController::class, 'destroy'])->name('banner.destroy');
 
-// multimedias
+// Multimedias
 Route::get('/panel/multimedias/{id}',[ImagenesVideoController::class, 'index']);
 Route::post('/panel/multimedias', [ImagenesVideoController::class, 'store'])->name('multimedias.store');
 Route::patch('/panel/multimedias/{id}', [ImagenesVideoController::class, 'update']);
 Route::delete('/panel/multimedias/{id}', [ImagenesVideoController::class, 'destroy'])->name('multimedias.destroy');
+
+// Comentarios
+Route::get('/panel/comentarios/{id}',[ComentarioController::class, 'index']);

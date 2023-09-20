@@ -24,12 +24,16 @@ class ApiController extends Controller
         $validateData = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
+            'direccion' => 'required|string|max:255',
+            'telefono' => 'required|numeric|digits:8',
             'password' => 'required|string|min:8',
         ]);
 
         $user = User::create([
             'name' => $validateData['name'],
             'email' => $validateData['email'],
+            'direccion' => $validateData['direccion'],
+            'telefono' => $validateData['telefono'],
             'password' =>  Hash::make($validateData['password']),
         ]);
 
@@ -53,10 +57,17 @@ class ApiController extends Controller
 
         $token = $user->createToken('auth_token')->plainTextToken;
 
-        return response()->json([
-            'access_token' => $token,
-            'token_type' => 'Bearer',
-        ], 200);
+        if ($request->email == "admin.bee@gmail.com") {
+            return response()->json([
+                'access_token' => $token,
+                'token_type' => 'Bearer',
+            ], 200);
+        }else{
+            return response()->json([
+                'Status' => 200,
+                'Mensaje' => 'OK',
+            ], 200);
+        }
     }
 
     // ================ Usuarios =====================

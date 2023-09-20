@@ -53,6 +53,10 @@
                     <i class="fa-solid fa-file-video"></i>
                     <span>Imagen/Video</span>
                 </a>
+                <a href="{{url('/panel/comentarios/'.$id)}}">
+                    <i class="fa-regular fa-comments"></i>
+                    <span>Comentarios</span>
+                </a>
             </div>
 
             <a href="{{url('/')}}" class="icono-cerrar-sesion">

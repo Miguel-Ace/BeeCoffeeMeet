@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('fecha_hora');
             $table->string('fecha_hora_inicio');
             $table->string('fecha_hora_fin');
-            $table->string('activo');
+            $table->boolean('activo');
             $table->timestamps();
 
             $table->foreign('id_cafe')->references('id')->on('cafes')->onUpdate('cascade')->onDelete('cascade');

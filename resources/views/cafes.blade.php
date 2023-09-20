@@ -193,20 +193,22 @@
                         <textarea name="direccion" id="direccion" placeholder="Dirección">{{old('direccion')}}</textarea>
                     </div>
 
-                    <div class="oculto">
+                    <div class="input">
                         {{-- <label for="longitud">longitud</label> --}}
+                        <i class="fa-solid fa-route"></i>
                         <input type="text" name="longitud" id="longitud"  placeholder="Longitud" value="{{old('longitud')}}">
                     </div>
 
-                    <div class="oculto">
+                    <div class="input">
                         {{-- <label for="latitud">latitud</label> --}}
+                        <i class="fa-solid fa-route"></i>
                         <input type="text" name="latitud" id="latitud"  placeholder="Latitud" value="{{old('latitud')}}">
                     </div class="input">
 
-                    <div class="input rango">
+                    {{-- <div class="input rango">
                         <label for="promedio_valoracion">Promedio valoracion</label>
-                        <input disabled type="range" id="promedio_valoracion" name="promedio_valoracion" min="1" max="5" step="1" value="3">
-                    </div>
+                        <input type="range" id="promedio_valoracion" name="promedio_valoracion" min="1" max="5" step="1" value="0">
+                    </div> --}}
                 </div>
 
                 <div class="btns-acciones-modal">
@@ -365,20 +367,22 @@
                         <textarea name="direccion" id="direccion" placeholder="Dirección">{{old('direccion')}}</textarea>
                     </div>
 
-                    <div class="input oculto">
+                    <div class="input">
                         {{-- <label for="longitud">longitud</label> --}}
+                        <i class="fa-solid fa-route"></i>
                         <input type="text" name="longitud" id="longitud"  placeholder="Longitud" value="{{old('longitud')}}">
                     </div>
 
-                    <div class="input oculto">
+                    <div class="input">
                         {{-- <label for="latitud">latitud</label> --}}
+                        <i class="fa-solid fa-route"></i>
                         <input type="text" name="latitud" id="latitud"  placeholder="Latitud" value="{{old('latitud')}}">
                     </div class="input">
 
-                    <div class="input rango">
+                    {{-- <div class="input rango">
                         <label for="promedio_valoracion">Promedio valoracion</label>
-                        <input disabled type="range" id="promedio_valoracion" name="promedio_valoracion" min="1" max="5" step="1" value="1">
-                    </div>
+                        <input type="range" id="promedio_valoracion" name="promedio_valoracion" min="1" max="5" step="1" value="0">
+                    </div> --}}
                 </div>
 
                 <div class="btns-acciones-modal">

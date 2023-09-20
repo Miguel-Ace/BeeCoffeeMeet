@@ -230,6 +230,28 @@ main{
                                     border-radius: .5rem;
                                 }
                             }
+                            .btn-activar{
+                                padding: .3rem .5rem;
+                                font-size: 3rem;
+                                color: #0B5345;
+                                &:hover{
+                                    background-color: #117A65;
+                                    color: white;
+                                    border-radius: .3rem;
+                                    scale: .7;
+                                }
+                            }
+                            .btn-desactivar{
+                                padding: .3rem .5rem;
+                                font-size: 3rem;
+                                color: #922B21;
+                                &:hover{
+                                    background-color: #C0392B;
+                                    color: white;
+                                    border-radius: .3rem;
+                                    scale: .7;
+                                }
+                            }
                             form{
                                 margin: 0;
                                 display: flex;

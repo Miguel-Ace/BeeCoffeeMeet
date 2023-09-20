@@ -6,15 +6,17 @@ export default defineConfig({
         laravel({
             input: 
             [
-                'resources/sass/general.scss',
                 'resources/sass/auth.scss',
-                'resources/sass/modal.scss',
+                'resources/sass/cafes.scss',
+                'resources/sass/general.scss',
                 'resources/sass/modal_panel.scss',
+                'resources/sass/modal.scss',
+                'resources/sass/panel.scss',
                 'resources/js/cafes/coordenadas.js',
                 'resources/js/cafes/modal_crear.js',
                 'resources/js/cafes/modal_editar.js',
                 'resources/js/cafes/reservas.js',
-                ,'resources/js/cafes/cafes.js',
+                'resources/js/cafes/cafes.js',
                 'resources/js/panel/otros_cafe.js',
                 'resources/js/panel/notificaciones.js',
                 'resources/js/panel/banner.js',

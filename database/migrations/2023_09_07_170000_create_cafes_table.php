@@ -28,7 +28,7 @@ return new class extends Migration
             $table->text('direccion');
             $table->string('longitud');
             $table->string('latitud');
-            $table->string('promedio_valoracion');
+            $table->string('promedio_valoracion')->nullable();
             $table->timestamps();
 
             $table->foreign('id_usuario')->references('id')->on('users')->onUpdate('cascade');

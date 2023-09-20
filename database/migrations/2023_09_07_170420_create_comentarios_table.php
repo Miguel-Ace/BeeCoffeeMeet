@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('comentario');
             $table->string('fecha_hora');
             $table->string('estrellas');
+            $table->boolean('activo');
             $table->timestamps();
 
             $table->foreign('id_cafe')->references('id')->on('cafes')->onUpdate('cascade');

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('cantidad_personas');
             $table->string('peticion');
             $table->text('comentarios');
-            $table->string('activo');
+            $table->boolean('activo');
             $table->timestamps();
 
             $table->foreign('id_cafe')->references('id')->on('cafes')->onUpdate('cascade')->onDelete('cascade');

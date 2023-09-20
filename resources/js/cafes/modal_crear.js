@@ -31,6 +31,8 @@
  const distrito = document.querySelector('#distrito')
  const barrio = document.querySelector('#barrio')
  const direccion = document.querySelector('#direccion')
+ const longitud = document.querySelector('#longitud')
+ const latitud = document.querySelector('#latitud')
  // const promedioValoracion = document.querySelector('#promedio_valoracion')
 
  const guardadMcc = document.querySelector('#guardad_mcc')
@@ -50,6 +52,8 @@ function bloquearBoton() {
  const condiDistrito = distrito.value == ''
  const condiBarrio = barrio.value == ''
  const condiDireccion = direccion.value == ''
+ const condiLongitud = longitud.value == ''
+ const condiLatitud = latitud.value == ''
  // const condiPromedioValoracion = promedioValoracion.value == ''
 
  if (
@@ -64,7 +68,9 @@ function bloquearBoton() {
    condiCanton ||
    condiDistrito ||
    condiBarrio ||
-   condiDireccion
+   condiDireccion ||
+   condiLongitud ||
+   condiLatitud
  ) {
    guardadMcc.disabled = true
    guardadMcc.style = 'opacity:.5; cursor: no-drop;'
@@ -108,6 +114,12 @@ barrio.addEventListener('change', () => {
  bloquearBoton()
 })
 direccion.addEventListener('change', () => {
+ bloquearBoton()
+})
+longitud.addEventListener('change', () => {
+ bloquearBoton()
+})
+latitud.addEventListener('change', () => {
  bloquearBoton()
 })
 
