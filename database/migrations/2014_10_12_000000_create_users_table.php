@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('email')->unique();
             $table->string('telefono');
-            $table->string('direccion');
+            $table->string('direccion')->nullable();
             // $table->string('tipo_login');
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
@@ -33,3 +33,4 @@ return new class extends Migration
         Schema::dropIfExists('users');
     }
 };
+

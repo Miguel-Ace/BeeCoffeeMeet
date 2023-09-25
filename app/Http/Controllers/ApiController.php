@@ -24,7 +24,7 @@ class ApiController extends Controller
         $validateData = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'direccion' => 'required|string|max:255',
+            'direccion' => 'nullable',
             'telefono' => 'required|numeric|digits:8',
             'password' => 'required|string|min:8',
         ]);
@@ -68,6 +68,19 @@ class ApiController extends Controller
                 'Mensaje' => 'OK',
             ], 200);
         }
+    }
+
+    // ================ Enviar email y password por json para retornar usuario =====================
+    // =============================================================================================
+    
+    public function userPorJson(Request $request){
+        if (!Auth::attempt($request->only('email','password'))) {
+            return response()->json(['Mensaje' => 'Inicio Invalido'],404);
+        }
+
+        $user = User::where('email', $request['email'])->firstOrFail();
+
+        return response()->json($user,200);
     }
 
     // ================ Usuarios =====================
@@ -213,13 +226,13 @@ class ApiController extends Controller
     }
 
     public function getComentariosPorCafe($cafe) {
-        $categoria_producto = Comentario::where('id_cafe', $cafe)->get()->load('cafes');
+        $categoria_producto = Comentario::where('id_cafe', $cafe)->get()->load('cafes','usuarios');
 
         return response()->json($categoria_producto, 200);
     }
 
     public function getComentariosPorUsuario($usuario) {
-        $categoria_producto = Comentario::where('id_usuario', $usuario)->get()->load('cafes');
+        $categoria_producto = Comentario::where('id_usuario', $usuario)->get()->load('cafes','usuarios');
 
         return response()->json($categoria_producto, 200);
     }
@@ -403,7 +416,7 @@ class ApiController extends Controller
     // ================================================
     
     public function getReservaciones(){
-        return response()->json(Reserva::all()->load('cafes','usuarios'),200);
+        return response()->json(Reserva::all()->load('cafes'),200);
     }
 
     public function getReservacionesPorCafe($cafe) {
@@ -413,7 +426,7 @@ class ApiController extends Controller
     }
 
     public function getReservacionesid($id){
-        $usuario = Reserva::find($id)->load('cafes','usuarios');
+        $usuario = Reserva::find($id)->load('cafes');
         if (is_null($usuario)) {
             return response()->json(["message"=>"Registro no encontrado"],404);
         }

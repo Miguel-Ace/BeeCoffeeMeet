@@ -16,9 +16,9 @@ return new class extends Migration
             $table->bigInteger('id_usuario')->unsigned();
             $table->string('nombre');
             $table->text('descripcion_corta');
-            $table->text('descripcion_larga');
+            $table->text('descripcion_larga')->nullable();;
             $table->text('url_logo');
-            $table->string('eslogan');
+            $table->string('eslogan')->nullable();;
             $table->string('cantidad_mesas');
             $table->string('capacidad');
             $table->string('provincia');
@@ -43,3 +43,4 @@ return new class extends Migration
         Schema::dropIfExists('cafes');
     }
 };
+

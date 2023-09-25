@@ -17,6 +17,7 @@ class Comentario extends Model
         'comentario',
         'fecha_hora',
         'estrellas',
+        'activo',
     ];
 
     function cafes(){

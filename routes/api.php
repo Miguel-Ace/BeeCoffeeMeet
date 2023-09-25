@@ -22,6 +22,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/register',[ApiController::class, 'register']);
 Route::post('/login',[ApiController::class, 'login']);
 
+Route::post('/userPorJson',[ApiController::class, 'userPorJson']);
+
 // ================ Usuarios =====================
 Route::get('/user', [ApiController::class, 'getUser'])->middleware('auth:sanctum');
 Route::get('/user/{id}', [ApiController::class, 'getUserid'])->middleware('auth:sanctum');

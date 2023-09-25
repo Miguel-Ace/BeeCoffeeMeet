@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('fecha_hora_inicio');
             $table->string('fecha_hora_fin');
             $table->string('cantidad_personas');
-            $table->string('peticion');
-            $table->text('comentarios');
+            $table->string('peticion')->nullable();
+            $table->text('comentarios')->nullable();
             $table->boolean('activo');
             $table->timestamps();
 
@@ -37,3 +37,4 @@ return new class extends Migration
         Schema::dropIfExists('reservas');
     }
 };
+
