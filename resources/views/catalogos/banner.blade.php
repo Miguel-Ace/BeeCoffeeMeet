@@ -1,6 +1,6 @@
 @extends('plantillas.panel')
 
-@vite(['resources/js/panel/banner.js'])
+@vite(['resources/js/panel/banner.js','resources/sass/banner.scss'])
 
 @section('titulo')
     Banner
@@ -47,7 +47,7 @@
                         No
                     </label>
                 </div> --}}
-                <input type="text" name="activo" value="true" id="activo">
+                <input type="text" name="activo" value="1" id="activo">
             </div>
         </div>
 
@@ -72,7 +72,7 @@
             @foreach ($otrosBanner as $banner)
                 @if ($banner->id_cafe == $id)
                     <tr>
-                        <td>
+                        <td class="img">
                             <img src="{{$banner->url_imagen}}" style="width: 5rem;" alt="">
                         </td>
                         <td>{{$banner->fecha_hora}}</td>
@@ -97,7 +97,7 @@
 @endsection
 
 <!-- Modal Editar -->
-<div class="modal oculto" id="mec">
+<div class="modal" id="mec">
     <div class="container-modal">
         <div class="header-modal">
             <p class="titulo-modal">Editar Campos</p>
@@ -137,7 +137,7 @@
                     </div>
         
                     <div class="input" style="display: none">
-                        <input type="text" name="activo" value="true" id="activo">
+                        <input type="text" name="activo" value="1" id="activo">
                     </div>
                 </div>
 
@@ -150,3 +150,8 @@
     </div>
 </div>
 {{-- Fin Modal Editar --}}
+
+{{-- Mostrar imagen --}}
+<div class="img-mostrar">
+    <img src="" alt="">
+</div>

@@ -8,17 +8,17 @@ const url_imagen_video = document.querySelector('#url_imagen_video')
 
 btnEditar.forEach(item => {
     item.onclick = () => {
-        modal.classList.remove('oculto')
+        modal.classList.toggle('oculto')
         form.setAttribute('action', `/panel/multimedias/${item.getAttribute('data-id')}`)
         url_imagen_video.value = item.getAttribute('data-iv')
     }
 })
 
 cEditar.onclick = () => {
-    modal.classList.add('oculto')
+    modal.classList.toggle('oculto')
 }
 xEditar.onclick = () => {
-    modal.classList.add('oculto')
+    modal.classList.toggle('oculto')
 }
 
 const url_imagen_video1 = document.querySelector('#url_imagen_video1')

@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Banner;
 use App\Models\Cafe;
 use App\Models\Comentario;
+use App\Models\Horario;
 use App\Models\ImagenesVideo;
 use App\Models\Notificacione;
 use App\Models\OtroCafe;
@@ -366,7 +367,7 @@ class ApiController extends Controller
     }
 
     // ================ Otro Cafe =====================
-    // =============================================
+    // ================================================
     
     public function getOtroCafe(){
         return response()->json(OtroCafe::all()->load('cafes'),200);
@@ -452,6 +453,53 @@ class ApiController extends Controller
 
     public function deleteReservaciones($id){
         $usuario = Reserva::find($id);
+        if (is_null($usuario)) {
+            return response()->json(["message"=>"No se pudo eliminar"],404);
+        }
+        $usuario->delete();
+        return response()->json(["message"=>"Registro eliminado"],200);
+    }
+
+    // ================ Horarios =================
+    // ===========================================
+    
+    public function getHorarios(){
+        return response()->json(Horario::all()->load('cafes'),200);
+    }
+
+    public function getHorariosPorCafe($cafe) {
+        $categoria_producto = Horario::where('id_cafe', $cafe)->get()->load('cafes');
+
+        return response()->json($categoria_producto, 200);
+    }
+
+    public function getHorariosid($id){
+        $usuario = Horario::find($id)->load('cafes');
+        if (is_null($usuario)) {
+            return response()->json(["message"=>"Registro no encontrado"],404);
+        }
+        return response()->json($usuario,200);
+    }
+
+    public function insertHorarios(Request $request){
+        $usuario = Horario::create($request->all());
+        if (is_null($usuario)) {
+            return response()->json(["message"=>"No se pudo insertar"],404);
+        }
+        return response()->json($usuario,200);
+    }
+
+    public function updateHorarios(Request $request, $id){
+        $usuario = Horario::find($id);
+        if (is_null($usuario)) {
+            return response()->json(["message"=>"Registro no encontrado"],404);
+        }
+        $usuario->update($request->all());
+        return response()->json($usuario,200);
+    }
+
+    public function deleteHorarios($id){
+        $usuario = Horario::find($id);
         if (is_null($usuario)) {
             return response()->json(["message"=>"No se pudo eliminar"],404);
         }

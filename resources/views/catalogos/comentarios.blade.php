@@ -1,6 +1,6 @@
 @extends('plantillas.panel')
 
-@vite(['resources/js/panel/otros_cafe.js'])
+@vite(['resources/js/panel/comentarios.js'])
 
 @section('titulo')
     Comentarios
@@ -26,11 +26,11 @@
                         <td>{{$comentario->estrellas}}</td>
                         <td>{{$comentario->activo}}</td>
                         <td class="acciones">
-                            <button type="button" class="btn-activar">
+                            <button type="button" class="btn-activar" data-id="{{$comentario->id}}" idUser="{{$comentario->id_usuario}}" comen="{{$comentario->comentario}}" comen="{{$comentario->comentario}}" fe="{{$comentario->fecha_hora}}" es="{{$comentario->estrellas}}" activo="1">
                                 <i class="fa-solid fa-check"></i>
                             </button>
 
-                            <button type="button" class="btn-desactivar">
+                            <button type="button" class="btn-desactivar" data-id="{{$comentario->id}}" idUser="{{$comentario->id_usuario}}" comen="{{$comentario->comentario}}" comen="{{$comentario->comentario}}" fe="{{$comentario->fecha_hora}}" es="{{$comentario->estrellas}}" activo="0">
                                 <i class="fa-solid fa-xmark"></i>
                             </button>
                         </td>
@@ -42,7 +42,7 @@
 @endsection
 
 <!-- Modal Editar -->
-<div class="modal oculto" id="mec">
+<div class="modal" id="mec">
     <div class="container-modal">
         <div class="header-modal">
             <p class="titulo-modal">Editar Campos</p>
@@ -56,22 +56,13 @@
                 @method('PATCH')
 
                 <div class="contenedor-input-modal">
-                    <div class="oculto" style="display: none">
-                        <label for="id_cafe">id_cafe</label>
-                        <input type="number" name="id_cafe" id="id_cafe" value="{{$id}}">
-                    </div>
-        
-                    <div class="input">
-                        <label for="otros_cafe">Otros café</label>
-                        {{-- <input type="text" name="otros_cafe" id="otros_cafe" value=""> --}}
-                        <textarea name="otros_cafe" id="otros_cafe" style="min-width:35rem;max-width:35rem;min-height: 135;max-height: 135;"></textarea>
+                    <div>
+                        <label for="activo">activo</label>
+                        <input type="number" name="activo" id="activo" value="1">
                     </div>
                 </div>
 
-                <div class="btns-acciones-modal">
-                    <button class="guardar" id="guardad_mec" type="submit">Guardar</button>
-                    <span class="cerrar cEditar">Cerrar</span>
-                </div>
+                <button class="guardar" id="guardad_mec" type="submit">Guardar</button>
             </form>
         </div>
     </div>

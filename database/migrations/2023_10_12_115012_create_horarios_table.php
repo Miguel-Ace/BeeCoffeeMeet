@@ -11,18 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('comentarios', function (Blueprint $table) {
+        Schema::create('horarios', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('id_cafe')->unsigned()->nullable();
-            $table->bigInteger('id_usuario')->unsigned()->nullable();
-            $table->text('comentario')->nullable();
-            $table->string('fecha_hora')->nullable();
-            $table->string('estrellas')->nullable();
-            $table->boolean('activo')->nullable();
+            $table->string('dia');
+            $table->string('hora_inicio');
+            $table->string('hora_fin');
             $table->timestamps();
 
             $table->foreign('id_cafe')->references('id')->on('cafes')->onUpdate('cascade');
-            $table->foreign('id_usuario')->references('id')->on('users')->onUpdate('cascade');
         });
     }
 
@@ -31,7 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('comentarios');
+        Schema::dropIfExists('horarios');
     }
 };
-

@@ -11,7 +11,7 @@ const fechaHoraFin = document.querySelector('#fecha_hora_fin')
 
 btnEditar.forEach(item => {
     item.onclick = () => {
-        modal.classList.remove('oculto')
+        modal.classList.toggle('oculto')
         form.setAttribute('action', `/panel/banner/${item.getAttribute('data-id')}`)
         url_imagen.value = item.getAttribute('data-urlimagen')
         fechaHora.value = item.getAttribute('data-fh')
@@ -21,8 +21,23 @@ btnEditar.forEach(item => {
 })
 
 cEditar.onclick = () => {
-    modal.classList.add('oculto')
+    modal.classList.toggle('oculto')
 }
 xEditar.onclick = () => {
-    modal.classList.add('oculto')
+    modal.classList.toggle('oculto')
+}
+
+// Modal de imagen
+const imagenes = document.querySelectorAll('tbody tr .img img')
+const modal_img = document.querySelector('.img-mostrar')
+
+imagenes.forEach(item => {
+    item.addEventListener('click', () => {
+        modal_img.querySelector('img').src = item.src
+        modal_img.classList.add('activo')
+    })
+});
+
+modal_img.onclick = () => {
+    modal_img.classList.remove('activo')
 }

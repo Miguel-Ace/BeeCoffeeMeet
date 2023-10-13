@@ -57,6 +57,10 @@
                     <i class="fa-regular fa-comments"></i>
                     <span>Comentarios</span>
                 </a>
+                <a href="{{url('/panel/horarios/'.$id)}}">
+                    <i class="fa-regular fa-calendar"></i>
+                    <span>Horarios</span>
+                </a>
             </div>
 
             <a href="{{url('/')}}" class="icono-cerrar-sesion">

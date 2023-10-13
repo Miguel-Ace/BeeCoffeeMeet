@@ -20,4 +20,11 @@ class ComentarioController extends Controller
         $comentarios = Comentario::all();
         return view('catalogos.comentarios', compact('id','cafeNombre','comentarios'));
     }
+
+    public function update(Request $request, $id)
+    {
+        $datos = $request->except('_token','_method');
+        Comentario::where('id','=',$id)->update($datos);
+        return redirect()->back()->with('mensaje','Actualizado Correctamente');
+    }
 }

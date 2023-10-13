@@ -47,7 +47,7 @@
                         No
                     </label>
                 </div> --}}
-                <input type="text" name="activo" value="true" id="activo">
+                <input type="text" name="activo" value="1" id="activo">
             </div>
         </div>
 
@@ -95,7 +95,7 @@
 @endsection
 
 <!-- Modal Editar -->
-<div class="modal oculto" id="mec">
+<div class="modal" id="mec">
     <div class="container-modal">
         <div class="header-modal">
             <p class="titulo-modal">Editar Campos</p>
@@ -135,7 +135,7 @@
                     </div>
         
                     <div class="input" style="display: none">
-                        <input type="text" name="activo" value="true" id="activo">
+                        <input type="text" name="activo" value="1" id="activo">
                     </div>
                 </div>
 

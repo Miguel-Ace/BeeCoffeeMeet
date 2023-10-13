@@ -59,7 +59,7 @@
 @endsection
 
 <!-- Modal Editar -->
-<div class="modal oculto" id="mec">
+<div class="modal" id="mec">
     <div class="container-modal">
         <div class="header-modal">
             <p class="titulo-modal">Editar Campos</p>

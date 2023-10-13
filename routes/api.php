@@ -87,3 +87,11 @@ Route::get('/reservaciones/{id}', [ApiController::class, 'getReservacionesid'])-
 Route::post('/reservaciones/insert', [ApiController::class, 'insertReservaciones'])->middleware('auth:sanctum');
 Route::put('/reservaciones/update/{id}', [ApiController::class, 'updateReservaciones'])->middleware('auth:sanctum');
 Route::delete('/reservaciones/delete/{id}', [ApiController::class, 'deleteReservaciones'])->middleware('auth:sanctum');
+
+// ================ Horarios =====================
+Route::get('/horarios', [ApiController::class, 'getHorarios'])->middleware('auth:sanctum');
+Route::get('/horarios_x_cafe/{id_cafe}', [ApiController::class, 'getHorariosPorCafe'])->middleware('auth:sanctum');
+Route::get('/horarios/{id}', [ApiController::class, 'getHorariosid'])->middleware('auth:sanctum');
+Route::post('/horarios/insert', [ApiController::class, 'insertHorarios'])->middleware('auth:sanctum');
+Route::put('/horarios/update/{id}', [ApiController::class, 'updateHorarios'])->middleware('auth:sanctum');
+Route::delete('/horarios/delete/{id}', [ApiController::class, 'deleteHorarios'])->middleware('auth:sanctum');

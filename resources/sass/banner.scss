@@ -1,0 +1,29 @@
+.img img{
+    cursor: pointer;
+}
+
+.img-mostrar{
+    z-index: 1000;
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0,0,0,.5);
+    visibility: hidden;
+    opacity: 0;
+    transition: .3s ease;
+    img{
+        cursor: pointer;
+        transition: .3s ease;
+        width: 45%;
+    }
+    &.activo{
+        visibility: visible;
+        opacity: 1;
+        img{
+            width: 50%;
+        }
+    }
+}

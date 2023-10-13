@@ -11,7 +11,7 @@ const fechaHoraFin = document.querySelector('#fecha_hora_fin')
 
 btnEditar.forEach(item => {
     item.onclick = () => {
-        modal.classList.remove('oculto')
+        modal.classList.toggle('oculto')
         form.setAttribute('action', `/panel/notificaciones/${item.getAttribute('data-id')}`)
         notificacion.value = item.getAttribute('data-notificacion')
         fechaHora.value = item.getAttribute('data-fh')
@@ -21,8 +21,8 @@ btnEditar.forEach(item => {
 })
 
 cEditar.onclick = () => {
-    modal.classList.add('oculto')
+    modal.classList.toggle('oculto')
 }
 xEditar.onclick = () => {
-    modal.classList.add('oculto')
+    modal.classList.toggle('oculto')
 }
