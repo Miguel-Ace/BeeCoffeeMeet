@@ -16,9 +16,10 @@
  const distrito = mec.querySelector('.container-modal .contenido-modal form .input #distrito')
  const barrio = mec.querySelector('.container-modal .contenido-modal form .input #barrio')
  const direccion = mec.querySelector('.container-modal .contenido-modal form .input #direccion')
+ const max_time_reser = mec.querySelector('.container-modal .contenido-modal form .input #max_time_reser')
  const longitud = mec.querySelector('.container-modal .contenido-modal form .input #longitud')
  const latitud = mec.querySelector('.container-modal .contenido-modal form .input #latitud')
- const valoracion = mec.querySelector('.container-modal .contenido-modal form .input #promedio_valoracion')
+//  const valoracion = mec.querySelector('.container-modal .contenido-modal form .input #promedio_valoracion')
 
  btnEditar.forEach(item => {
   
@@ -39,9 +40,10 @@
         distrito.value = item.getAttribute('data-distrito')
         barrio.value = item.getAttribute('data-barrio')
         direccion.value = item.getAttribute('data-direccion')
+        max_time_reser.value = item.getAttribute('data-max_time_reser')
         longitud.value = item.getAttribute('data-longitud')
         latitud.value = item.getAttribute('data-latitud')
-        valoracion.value = item.getAttribute('data-promediovaloracion')
+        // valoracion.value = item.getAttribute('data-promediovaloracion')
     }
  })
 

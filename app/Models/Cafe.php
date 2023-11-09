@@ -28,6 +28,7 @@ class Cafe extends Model
         'longitud',
         'latitud',
         'promedio_valoracion',
+        'max_time_reser',
     ];
 
     function usuarios(){

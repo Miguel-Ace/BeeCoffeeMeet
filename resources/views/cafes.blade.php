@@ -7,6 +7,10 @@
     <title>Café</title>
     <script src="https://kit.fontawesome.com/cd197f289d.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {{-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDaeWicvigtP9xPv919E-RNoxfvC-Hqik&callback=initMap"></script> --}}
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+
     @vite([
         'resources/sass/cafes.scss',
         'resources/sass/modal.scss',
@@ -15,6 +19,7 @@
         'resources/js/cafes/modal_editar.js',
         'resources/js/cafes/reservas.js',
         'resources/js/cafes/cafes.js',
+        'resources/js/cafes/mapa_coordenadas.js',
         ])
 </head>
 <body>
@@ -54,6 +59,27 @@
             <p>Hola: {{auth()->user()->name}}</p>
         </div>
     </header>
+
+    <div class="contenedor-map">
+        <div class="mapa">
+            <span class="salir">x</span>
+
+            <select id="location">
+                <option value="-1">Selecciona una provincia</option>
+                <option value="9.932076, -84.079657">San José</option>
+                <option value="10.452701, -84.47113">Alajuela</option>
+                <option value="9.798384, -83.693848">Cartago</option>
+                <option value="10.225734, -85.521698">Guanacaste</option>
+                <option value="10.232492, -84.201965">Heredia</option>
+                <option value="10.090558, -83.350525">Limón</option>
+                <option value="9.256647, -84.221191">Puntarenas</option>
+        
+            </select>
+
+            <div id="map"></div>
+        </div>
+    </div>
+
     <main>
         <div class="contenedor-cards">
             @foreach ($cafes as $cafe)
@@ -72,7 +98,7 @@
                             <div class="btn-acciones">
                                 <a href="{{url('/panel/otros_cafes/'.$cafe->id)}}" class="btn-setting"><i class="fa-solid fa-gear"></i></a>
 
-                                <button class="btn-editar" data-cafeId="{{$cafe->id}}" data-nombre="{{$cafe->nombre}}" data-dc="{{$cafe->descripcion_corta}}" data-dg="{{$cafe->descripcion_larga}}" data-urlogo="{{$cafe->url_logo}}" data-eslogan="{{$cafe->eslogan}}" data-cantidadmesas="{{$cafe->cantidad_mesas}}" data-capacidad="{{$cafe->capacidad}}" data-provincia="{{$cafe->provincia}}" data-canton="{{$cafe->canton}}" data-distrito="{{$cafe->distrito}}" data-barrio="{{$cafe->barrio}}" data-direccion="{{$cafe->direccion}}" data-longitud="{{$cafe->longitud}}" data-latitud="{{$cafe->latitud}}" data-promediovaloracion="{{$cafe->promedio_valoracion}}"><i class="fa-solid fa-pencil"></i></button>
+                                <button class="btn-editar" data-cafeId="{{$cafe->id}}" data-nombre="{{$cafe->nombre}}" data-dc="{{$cafe->descripcion_corta}}" data-dg="{{$cafe->descripcion_larga}}" data-urlogo="{{$cafe->url_logo}}" data-eslogan="{{$cafe->eslogan}}" data-cantidadmesas="{{$cafe->cantidad_mesas}}" data-capacidad="{{$cafe->capacidad}}" data-provincia="{{$cafe->provincia}}" data-canton="{{$cafe->canton}}" data-distrito="{{$cafe->distrito}}" data-barrio="{{$cafe->barrio}}" data-direccion="{{$cafe->direccion}}" data-max_time_reser="{{$cafe->max_time_reser}}" data-longitud="{{$cafe->longitud}}" data-latitud="{{$cafe->latitud}}" data-promediovaloracion="{{$cafe->promedio_valoracion}}"><i class="fa-solid fa-pencil"></i></button>
 
                                 <form action="{{url('cafe/'.$cafe->id)}}"  method="post" id-cafeId="{{$cafe->id}}">
                                     @csrf
@@ -194,9 +220,8 @@
                     </div>
 
                     <div class="input">
-                        {{-- <label for="longitud">longitud</label> --}}
-                        <i class="fa-solid fa-route"></i>
-                        <input type="text" name="longitud" id="longitud"  placeholder="Longitud" value="{{old('longitud')}}">
+                        <i class="fa-regular fa-clock"></i>
+                        <input type="number" name="max_time_reser" id="max_time_reser" min="0"  placeholder="Tiempo de reservación (Minutos)" value="{{old('max_time_reser')}}">
                     </div>
 
                     <div class="input">
@@ -205,12 +230,20 @@
                         <input type="text" name="latitud" id="latitud"  placeholder="Latitud" value="{{old('latitud')}}">
                     </div class="input">
 
+                    <div class="input">
+                        {{-- <label for="longitud">longitud</label> --}}
+                        <i class="fa-solid fa-route"></i>
+                        <input type="text" name="longitud" id="longitud"  placeholder="Longitud" value="{{old('longitud')}}">
+                    </div>
+
                     {{-- <div class="input rango">
                         <label for="promedio_valoracion">Promedio valoracion</label>
                         <input type="range" id="promedio_valoracion" name="promedio_valoracion" min="1" max="5" step="1" value="0">
                     </div> --}}
                 </div>
 
+                <i class="fa-solid fa-location-dot ico-mapa"></i>
+                
                 <div class="btns-acciones-modal">
                     <button class="guardar" id="guardad_mcc" type="submit">Guardar</button>
                     <span class="cerrar">Cerrar</span>
@@ -368,9 +401,8 @@
                     </div>
 
                     <div class="input">
-                        {{-- <label for="longitud">longitud</label> --}}
-                        <i class="fa-solid fa-route"></i>
-                        <input type="text" name="longitud" id="longitud"  placeholder="Longitud" value="{{old('longitud')}}">
+                        <i class="fa-regular fa-clock"></i>
+                        <input type="number" name="max_time_reser" id="max_time_reser" min="0"  placeholder="Tiempo de reservación (Minutos)" value="{{old('max_time_reser')}}">
                     </div>
 
                     <div class="input">
@@ -379,11 +411,18 @@
                         <input type="text" name="latitud" id="latitud"  placeholder="Latitud" value="{{old('latitud')}}">
                     </div class="input">
 
+                    <div class="input">
+                        {{-- <label for="longitud">longitud</label> --}}
+                        <i class="fa-solid fa-route"></i>
+                        <input type="text" name="longitud" id="longitud"  placeholder="Longitud" value="{{old('longitud')}}">
+                    </div>
                     {{-- <div class="input rango">
                         <label for="promedio_valoracion">Promedio valoracion</label>
                         <input type="range" id="promedio_valoracion" name="promedio_valoracion" min="1" max="5" step="1" value="0">
                     </div> --}}
                 </div>
+
+                <i class="fa-solid fa-location-dot ico-mapa"></i>
 
                 <div class="btns-acciones-modal">
                     <button class="guardar" id="guardad_mec" type="submit">Guardar</button>

@@ -33,6 +33,7 @@
  const direccion = document.querySelector('#direccion')
  const longitud = document.querySelector('#longitud')
  const latitud = document.querySelector('#latitud')
+ const maxTimeReser = document.querySelector('#max_time_reser')
  // const promedioValoracion = document.querySelector('#promedio_valoracion')
 
  const guardadMcc = document.querySelector('#guardad_mcc')
@@ -54,6 +55,7 @@ function bloquearBoton() {
  const condiDireccion = direccion.value == ''
  const condiLongitud = longitud.value == ''
  const condiLatitud = latitud.value == ''
+ const condiMaxTimeReser = maxTimeReser.value == ''
  // const condiPromedioValoracion = promedioValoracion.value == ''
 
  if (
@@ -70,7 +72,8 @@ function bloquearBoton() {
    condiBarrio ||
    condiDireccion ||
    condiLongitud ||
-   condiLatitud
+   condiLatitud ||
+   condiMaxTimeReser
  ) {
    guardadMcc.disabled = true
    guardadMcc.style = 'opacity:.5; cursor: no-drop;'
@@ -120,6 +123,9 @@ longitud.addEventListener('change', () => {
  bloquearBoton()
 })
 latitud.addEventListener('change', () => {
+ bloquearBoton()
+})
+maxTimeReser.addEventListener('change', () => {
  bloquearBoton()
 })
 

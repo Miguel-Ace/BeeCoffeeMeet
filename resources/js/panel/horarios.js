@@ -24,3 +24,24 @@ cEditar.onclick = () => {
 xEditar.onclick = () => {
     modal.classList.toggle('oculto')
 }
+
+
+// Evitando que seleccione un dia previamente seleccionado
+const tbody = document.querySelectorAll('tbody tr td:nth-child(1)');
+const optionDeDias = document.querySelectorAll('#dias option')
+const optionEditDias = document.querySelectorAll('#dia option')
+
+tbody.forEach(itemT => {
+    const valorACoincidir = itemT.textContent.trim();
+    optionDeDias.forEach(item => {
+        if (item.value === valorACoincidir) {
+            item.style = 'display:none'
+        }
+    });
+
+    optionEditDias.forEach(item => {
+        if (item.value === valorACoincidir) {
+            item.style = 'display:none'
+        }
+    });
+});

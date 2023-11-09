@@ -17,8 +17,9 @@
 
             <div class="input">
                 <label for="dia">Día</label>
-                <select name="dia" id="dia">
-                    <option value="Lunes">Lunes</option>
+                <select name="dia" id="dias">
+                    <option value="" selected disabled>Seleccionar día</option>
+                    <option  {{old('dia') == "Lunes" ? 'selected' : ''}} value="Lunes">Lunes</option>
                     <option {{old('dia') == "Martes" ? 'selected' : ''}} value="Martes">Martes</option>
                     <option {{old('dia') == "Miércoles" ? 'selected' : ''}} value="Miércoles">Miércoles</option>
                     <option {{old('dia') == "Jueves" ? 'selected' : ''}} value="Jueves">Jueves</option>
@@ -113,12 +114,12 @@
                         <label for="dia">Día</label>
                         <select name="dia" id="dia">
                             <option value="Lunes">Lunes</option>
-                            <option {{old('dia') == "Martes" ? 'selected' : ''}} value="Martes">Martes</option>
-                            <option {{old('dia') == "Miércoles" ? 'selected' : ''}} value="Miércoles">Miércoles</option>
-                            <option {{old('dia') == "Jueves" ? 'selected' : ''}} value="Jueves">Jueves</option>
-                            <option {{old('dia') == "Viernes" ? 'selected' : ''}} value="Viernes">Viernes</option>
-                            <option {{old('dia') == "Sábado" ? 'selected' : ''}} value="Sábado">Sábado</option>
-                            <option {{old('dia') == "Domingo" ? 'selected' : ''}} value="Domingo">Domingo</option>
+                            <option value="Martes">Martes</option>
+                            <option value="Miércoles">Miércoles</option>
+                            <option value="Jueves">Jueves</option>
+                            <option value="Viernes">Viernes</option>
+                            <option value="Sábado">Sábado</option>
+                            <option value="Domingo">Domingo</option>
                         </select>
                     </div>
         
