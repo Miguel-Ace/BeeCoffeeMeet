@@ -53,7 +53,7 @@ img{
                 font-family: 'Libre Baskerville', serif;
                 a{
                     text-decoration: none;
-                    color: #a26d50;
+                    color: rgba(3,3,58,1);
                     // transition: .3s ease;
                     &:hover{
                         scale: 1.1;
@@ -89,7 +89,8 @@ img{
                     }
                     i{
                         position: absolute;
-                        color: #a26d50;
+                        // color: #a26d50;
+                        color: rgba(3,3,58,.8);
                         left: 8%;
                     }
                     textarea{
@@ -107,15 +108,15 @@ img{
             .btn-enviar{
                 border: 1px solid beige;
                 color: beige;
-                background-color: #a26d50;
+                background-color: rgba(3,3,58,.8);
                 padding: 1rem 2rem;
                 cursor: pointer;
                 font-size: 1.7rem;
                 font-family: 'Libre Baskerville', serif;
                 transition: .3s ease;
                 &:hover{
-                    background-color: #90593c;
-                    box-shadow: 8px 11px 0px -2px rgba(194,148,122,1);
+                    background-color: rgba(3,3,58,.9);
+                    box-shadow: 8px 11px 0px -2px rgba(3,3,58,.9);
                 }
             }
             .ultimos-datos{
@@ -124,16 +125,16 @@ img{
                 font-family: 'Poppins', sans-serif;
                 .recordar{
                     label{
-                        color: #a26d50;
+                        color: rgba(3,3,58,.9);
                         &:hover{
-                            color: #6d4733;
+                            color: rgba(3,3,58,.7);
                         }
                     }
                 }
                 a{
-                    color: #a26d50;
+                    color: rgba(3,3,58,.9);
                     &:hover{
-                        color: #6d4733;
+                        color: rgba(3,3,58,.7);
                     }
                 }
             }

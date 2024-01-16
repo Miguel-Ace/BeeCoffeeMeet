@@ -37,29 +37,31 @@
             <div class="toggle"><span></span></div>
 
             <div class="iconos">
-                <a href="{{url('/panel/otros_cafes/'.$id)}}">
+                {{-- <a href="{{url('/panel/otros_cafes/'.$id)}}">
                     <i class="fa-solid fa-mug-hot"></i>
                     <span>Otros cafés</span>
-                </a>
-                <a href="{{url('/panel/notificaciones/'.$id)}}">
+                </a> --}}
+                {{-- <a href="{{url('/panel/notificaciones/'.$id)}}">
                     <i class="fa-solid fa-envelope"></i>
                     <span>Notificaciones</span>
-                </a>
+                </a> --}}
                 <a href="{{url('/panel/banner/'.$id)}}">
                     <i class="fa-regular fa-image"></i>
                     <span>Banner</span>
                 </a>
-                <a href="{{url('/panel/multimedias/'.$id)}}">
+                {{-- <a href="{{url('/panel/multimedias/'.$id)}}">
                     <i class="fa-solid fa-file-video"></i>
                     <span>Imagen/Video</span>
-                </a>
-                <a href="{{url('/panel/comentarios/'.$id)}}">
-                    <i class="fa-regular fa-comments"></i>
-                    <span>Comentarios</span>
-                </a>
+                </a> --}}
+
                 <a href="{{url('/panel/horarios/'.$id)}}">
                     <i class="fa-regular fa-calendar"></i>
                     <span>Horarios</span>
+                </a>
+                
+                <a href="{{url('/panel/comentarios/'.$id)}}">
+                    <i class="fa-regular fa-comments"></i>
+                    <span>Comentarios</span>
                 </a>
             </div>
 

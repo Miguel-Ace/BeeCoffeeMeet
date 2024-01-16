@@ -13,9 +13,20 @@ body{
     min-height: 100vh;
     font-size: 1.6rem;
     font-family: 'Kantumruy Pro', sans-serif;
-    background-image: url('/public/img/fondo4.png');
+    // background-image: url('https://media-public.canva.com/MADQ5LhUZE0/1/screen.jpg');
+    background-image: url('https://resizer.otstatic.com/v2/photos/wide-huge/2/42094068.webp');
+    // background-image: url('/public/img/fondo4.png');
     background-repeat: no-repeat;
     background-size: 100% 100%;
+    &::before{
+        content: '';
+        position: absolute;
+        background-color: rgba(3,3,58,.3);
+        backdrop-filter: blur(.2rem);
+        // filter: blur(1rem);
+        width: 100%;
+        height: 100%;
+    }
 }
 p{
     margin: 0;
@@ -35,9 +46,12 @@ header{
     font-size: 2rem;
     margin-bottom: 2rem;
     .logo{
+        z-index: 1;
+        padding: 1rem 0;
         width: 7rem;
     }
     .info{
+        z-index: 1;
         display: flex;
         gap: 2rem;
         p{
@@ -45,7 +59,7 @@ header{
             border: 1px solid transparent;
         }
         form button{
-            border: 1px solid beige;
+            border: 1px solid white;
             background-color: unset;
             padding: .5rem;
             font-size: 2rem;
@@ -55,20 +69,18 @@ header{
             font-family: 'Libre Baskerville', serif;
             color: beige;
             &:hover{
-                background-color: beige;
-                color: #a26d50;
-                border: 1px solid #a26d50;
+                background-color: rgba(67,128,255,.6);
+                color: white;
             }
         }
         .crear-cafe{
-            border: 1px solid beige;
+            border: 1px solid white;
             border-radius: .5rem;
             cursor: pointer;
             transition: .1s ease;
             &:hover{
-                background-color: beige;
-                color: #a26d50;
-                border: 1px solid #a26d50;
+                background-color: rgba(67,128,255,.6);
+                color: white;
             }
         }
     }
@@ -83,8 +95,9 @@ main{
         overflow-y: hidden;
         // overflow-x: scroll;
         .card{
-            background-color: beige;
-            // flex: 0 0 calc(20%);
+            z-index: 1;
+            background-color: white;
+            color: rgba(3,3,58);
             flex: 0 0 calc(24.5rem);
             display: inline-block;
             height: 53rem;
@@ -92,6 +105,10 @@ main{
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            transition: .3s ease;
+            &:hover{
+                box-shadow: inset 0px 0px 11px 4px rgba(67,128,255,.7);
+            }
             .logo-card{
                 padding: 1rem;
             }
@@ -116,19 +133,35 @@ main{
                 gap: 1rem;
                 padding: .5rem 0;
                 .btn-reservacion{
+                    position: relative;
                     padding: 1rem 2rem;
-                    border: 1px solid #a26d50;
-                    background-color: #a26d50;
-                    color: white;
+                    border: 1px solid rgba(3,3,58);
+                    color: rgba(3,3,58);
                     font-family: 'Libre Baskerville', serif;
-                    // font-family: 'Pacifico', cursive;
-                    // font-family: 'Poppins', sans-serif;
                     font-size: 2rem;
                     cursor: pointer;
                     transition: .3s ease;
                     margin-top: 1rem;
+                    &::before{
+                        transition: .3s ease;
+                        content: '';
+                        position: absolute;
+                        left: 0;
+                        top: 70%;
+                        width: 0%;
+                        height: .1rem;
+                        background: rgba(3,3,58);
+                    }
                     &:hover{
-                        box-shadow: -1px -2px 7px -1px rgba(0,0,0,0.45);
+                        // box-shadow: -1px -2px 7px -1px rgba(0,0,0,0.45);
+                        // background-color: rgba(3,3,58);
+                        // color: white;
+                        letter-spacing: .1rem;
+                        border: 1px solid white;
+                        background: white;
+                        &::before{
+                            width: 100%;
+                        }
                     }
                 }
                 .btn-acciones{

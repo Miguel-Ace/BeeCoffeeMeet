@@ -47,7 +47,7 @@
     
     <header>
         <div class="logo">
-            <img src="{{asset('img/logo-taza.png')}}" alt="">
+            <img src="{{asset('img/CupSpot.png')}}" alt="">
         </div>
 
         <div class="info">
