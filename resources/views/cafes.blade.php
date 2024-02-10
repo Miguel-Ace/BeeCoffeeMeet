@@ -20,6 +20,7 @@
         'resources/js/cafes/reservas.js',
         'resources/js/cafes/cafes.js',
         'resources/js/cafes/mapa_coordenadas.js',
+        'resources/js/cafes/modal_rol.js',
         ])
 </head>
 <body>
@@ -51,6 +52,7 @@
         </div>
 
         <div class="info">
+            <p class="crear-rol">Crear <span>Rol</span></p>
             <p class="crear-cafe">Crear <span>Café</span></p>
             <form method="POST" action="{{ url('logout') }}">
                 @csrf
@@ -77,6 +79,53 @@
             </select>
 
             <div id="map"></div>
+        </div>
+    </div>
+
+    <div class="contenedor-roles">
+        <div class="roles">
+            <div class="encabezado-rol">
+                <span class="salir_rol">x</span>
+                <p class="">Asignar Roles</p>
+            </div>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Usuario</th>
+                        <th>Rol</th>
+                        <th>Asignar rol</th>
+                        <th>Activar cuenta</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($users as $user)
+                        <tr>
+                            <td>{{ $user->name }}</td>
+                            <td>{{ implode(', ', $user->roles()->get()->pluck('name')->toArray()) }}</td>
+                            <td class="accion-rol">
+                                <form action="{{ url('/assign'.'/'.$user->id) }}" method="post">
+                                    @csrf
+                                    @method('PUT')
+                                    <select name="role" id="role" class="form-control">
+                                        @foreach ($roles as $role)
+                                            <option value="{{ $role->name }}" {{ $user->hasRole($role) ? 'selected' : '' }}>{{ $role->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <button type="submit" class="actualizar">Asignar</button>
+                                </form>
+                            </td>
+                            <td>
+                                @if ($user->activo == 1)
+                                    <input type="checkbox" id="{{$user->id}}" class="activo" checked>
+                                @else
+                                    <input type="checkbox" id="{{$user->id}}" class="activo">
+                                @endif
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
 

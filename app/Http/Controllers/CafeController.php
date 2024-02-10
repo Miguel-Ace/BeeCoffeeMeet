@@ -6,7 +6,9 @@ use App\Models\Cafe;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Reserva;
+use App\Models\User;
 use Illuminate\Support\Facades\Http;
+use Spatie\Permission\Models\Role;
 
 class CafeController extends Controller
 {
@@ -22,7 +24,9 @@ class CafeController extends Controller
         
         $cafes = Cafe::all();
         $reservaciones = Reserva::all();
-        return view('cafes', compact('datosCostaRica','cafes','reservaciones'));
+        $users = User::all();
+        $roles = Role::all();
+        return view('cafes', compact('datosCostaRica','cafes','reservaciones','users','roles'));
     }
 
     public function store(Request $request)

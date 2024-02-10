@@ -45,6 +45,107 @@
         }
     }
 }
+.contenedor-roles{
+    background: rgba(0,0,0,.4);
+    width: 100%;
+    height: 100dvh;
+    position: absolute;
+    top: 0;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .3s;
+    .roles{
+        transition: .3s;
+        background-color: white;
+        width: 45%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .encabezado-rol{
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            color: white;
+            background: rgba(3, 3, 58);
+            padding: 1rem;
+            font-size: 2rem;
+            .salir_rol{
+                font-size: 2.5rem;
+                position: absolute;
+                right: 2rem;
+                cursor: pointer;
+                transition: .3s;
+                padding: 1rem;
+                &:hover{
+                    transform: rotate(180deg);
+                }
+            }
+        }
+        .table{
+            display: flex;
+            gap: 1rem;
+            flex-direction: column;
+            width: 100%;
+            font-size: 1.8rem;
+            // padding: 3rem;
+            thead {
+                tr{
+                    width: 100%;
+                    display: grid;
+                    grid-template-columns: repeat(4,1fr);
+                }
+            }
+            tbody {
+                display: flex;
+                flex-direction: column;
+                tr{
+                    width: 100%;
+                    height: 4rem;
+                    display: grid;
+                    justify-items: center;
+                    align-items: center;
+                    grid-template-columns: repeat(4,1fr);
+                    &:nth-child(odd){
+                        background: rgba(162, 109, 80, .2);
+                    }
+                }
+                .accion-rol form {
+                    select{
+                        padding: .5rem;
+                    }
+                    button{
+                        padding: .5rem;
+                        border: none;
+                        color: white;
+                        background: #0B5345;
+                        letter-spacing: .1rem;
+                        cursor: pointer;
+                        transition: .3s;
+                        &:hover{
+                            // border-radius: .4rem;
+                            scale: 1.1;
+                        }
+                    }
+                } 
+            }
+            // text-align: center;
+        }
+    }
+}
+.activo{
+    visibility: visible;
+    opacity: 1;
+    .roles{
+        width: 60%;
+    }
+}
+    
 .modal{
     position: fixed;
     top: 0;

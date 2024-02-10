@@ -5,6 +5,9 @@ namespace App\Http\Controllers\auth;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Mail\notificar_admin;
+use App\Mail\notificar_user;
+use Illuminate\Support\Facades\Mail;
 
 class RegisterController extends Controller
 {
@@ -29,6 +32,8 @@ class RegisterController extends Controller
             'direccion' => $request->direccion,
             'telefono' => $request->telefono,
             'password' => $request->password,
+            'activo' => 0,
+            'movil' => 0,
         ]);
 
         // auth()->attempt([
@@ -36,8 +41,16 @@ class RegisterController extends Controller
         //     'password' => $request->password,
         // ]);
 
-        auth()->attempt($request->only('email','password'));
+        // auth()->attempt($request->only('email','password'));
 
-        return redirect('/');
+        $vista_admin = new notificar_admin($request->all());
+        Mail::to('acevedo51198mac@gmail.com')->send($vista_admin);
+
+        $vista_user = new notificar_user($request->input('name'));
+        $correo = $request->input('email');
+        Mail::to($correo)->send($vista_user);
+
+        // return redirect('/');
+        return redirect()->back()->with('mensaje', 'Regístrado con éxito, favor esperar a que validen su cuenta');
     }
 }

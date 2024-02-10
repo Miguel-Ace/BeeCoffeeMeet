@@ -83,6 +83,7 @@ Route::delete('/otro_cafe/delete/{id}', [ApiController::class, 'deleteOtroCafe']
 // ================ Reservaciones =====================
 Route::get('/reservaciones', [ApiController::class, 'getReservaciones'])->middleware('auth:sanctum');
 Route::get('/reservaciones_x_cafe/{id_cafe}', [ApiController::class, 'getReservacionesPorCafe'])->middleware('auth:sanctum');
+Route::get('/reservaciones_x_user/{id_user}', [ApiController::class, 'getReservacionesPorUser'])->middleware('auth:sanctum');
 Route::get('/reservaciones/{id}', [ApiController::class, 'getReservacionesid'])->middleware('auth:sanctum');
 Route::post('/reservaciones/insert', [ApiController::class, 'insertReservaciones'])->middleware('auth:sanctum');
 Route::put('/reservaciones/update/{id}', [ApiController::class, 'updateReservaciones'])->middleware('auth:sanctum');

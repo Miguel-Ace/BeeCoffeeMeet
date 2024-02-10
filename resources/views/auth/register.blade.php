@@ -8,6 +8,18 @@
             <a href="" style="opacity: .5">Regístrate</a>
         </div>
 
+        @if(session('mensaje'))
+            <p class="mensaje">{{session('mensaje')}}</p>
+
+            <script>
+                const textMensaje = document.querySelector('.mensaje')
+                
+                setTimeout(() => {
+                    textMensaje.style.display = 'none'
+                }, 7000);
+            </script>
+        @endif
+
         @error('name')
             <p class="campoName">{{$message}}</p>
             <script>

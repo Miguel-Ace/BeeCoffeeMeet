@@ -1,16 +1,17 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RolController;
+use App\Http\Controllers\CafeController;
+use App\Http\Controllers\BannerController;
+use App\Http\Controllers\HorarioController;
+use App\Http\Controllers\OtroCafeController;
 use App\Http\Controllers\auth\LoginController;
+use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\auth\LogoutController;
 use App\Http\Controllers\auth\RegisterController;
-use App\Http\Controllers\BannerController;
-use App\Http\Controllers\CafeController;
-use App\Http\Controllers\ComentarioController;
-use App\Http\Controllers\HorarioController;
 use App\Http\Controllers\ImagenesVideoController;
 use App\Http\Controllers\NotificacioneController;
-use App\Http\Controllers\OtroCafeController;
 use App\Http\Controllers\vista\PrincipalController;
 
 /*
@@ -71,3 +72,7 @@ Route::get('/panel/horarios/{id}',[HorarioController::class, 'index']);
 Route::post('/panel/horarios', [HorarioController::class, 'store'])->name('horarios.store');
 Route::patch('/panel/horarios/{id}', [HorarioController::class, 'update']);
 Route::delete('/panel/horarios/{id}', [HorarioController::class, 'destroy'])->name('horarios.destroy');
+
+// Roles
+Route::put('/assign/{id}', [RolController::class, 'update'])->name('role.update');
+Route::delete('/assign/{id}', [RolController::class, 'destroy'])->name('role.destroy');

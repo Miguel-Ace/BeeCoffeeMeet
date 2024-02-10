@@ -58,7 +58,7 @@ class ApiController extends Controller
 
         $token = $user->createToken('auth_token')->plainTextToken;
 
-        if ($request->email == "admin.bee@gmail.com") {
+        if ($request->email == "acevedo51198mac@gmail.com") {
             return response()->json([
                 'access_token' => $token,
                 'token_type' => 'Bearer',
@@ -422,6 +422,12 @@ class ApiController extends Controller
 
     public function getReservacionesPorCafe($cafe) {
         $categoria_producto = Reserva::where('id_cafe', $cafe)->get()->load('cafes');
+
+        return response()->json($categoria_producto, 200);
+    }
+
+    public function getReservacionesPorUser($user) {
+        $categoria_producto = Reserva::where('id_usuario', $user)->get()->load('cafes');
 
         return response()->json($categoria_producto, 200);
     }

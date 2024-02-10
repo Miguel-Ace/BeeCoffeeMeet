@@ -19,6 +19,7 @@ export default defineConfig({
                 'resources/js/cafes/reservas.js',
                 'resources/js/cafes/cafes.js',
                 'resources/js/cafes/mapa_coordenadas.js',
+                'resources/js/cafes/modal_rol.js',
                 'resources/js/panel/otros_cafe.js',
                 'resources/js/panel/notificaciones.js',
                 'resources/js/panel/banner.js',
