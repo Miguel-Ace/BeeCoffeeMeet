@@ -44,7 +44,8 @@ class RegisterController extends Controller
         // auth()->attempt($request->only('email','password'));
 
         $vista_admin = new notificar_admin($request->all());
-        Mail::to('acevedo51198mac@gmail.com')->send($vista_admin);
+        Mail::to('ramses.rivas@gmail.com')->send($vista_admin);
+        // Mail::to('acevedo51198mac@gmail.com')->send($vista_admin);
 
         $vista_user = new notificar_user($request->input('name'));
         $correo = $request->input('email');
@@ -52,5 +53,22 @@ class RegisterController extends Controller
 
         // return redirect('/');
         return redirect()->back()->with('mensaje', 'Regístrado con éxito, favor esperar a que validen su cuenta');
+    }
+
+    public function estado_user(Request $request, $id)
+    {
+        $user = User::find($id);
+
+        if ($user->activo) {
+            $user->update([
+                'activo' => 0
+            ]);
+        }else{
+            $user->update([
+                'activo' => 1
+            ]);
+        }
+
+        return redirect()->back()->with('mensaje','Usuario actualizado');
     }
 }

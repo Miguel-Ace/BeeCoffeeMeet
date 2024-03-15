@@ -18,8 +18,8 @@ return new class extends Migration
         User::create([
             'name' => 'su_admin',
             // 'email' => 'suadmin@example.com',
-            'email' => 'acevedo51198mac@gmail.com',
-            'password' => Hash::make('12345678'),
+            'email' => 'ramses.rivas@gmail.com',
+            'password' => Hash::make('TecladoJirafaCableFigura'),
             'activo' => 1,
         ]);
         

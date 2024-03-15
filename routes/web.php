@@ -33,6 +33,8 @@ Route::post('/logout',[LogoutController::class,'store']);
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'store']);
 
+Route::patch('/estado_user/{id}', [RegisterController::class, 'estado_user']);
+
 // Cafés
 Route::get('/',[CafeController::class, 'index']);
 Route::post('/cafe', [CafeController::class, 'store'])->name('cafe.store');
@@ -70,6 +72,7 @@ Route::patch('/panel/comentarios/{id}', [ComentarioController::class, 'update'])
 // Horarios
 Route::get('/panel/horarios/{id}',[HorarioController::class, 'index']);
 Route::post('/panel/horarios', [HorarioController::class, 'store'])->name('horarios.store');
+Route::post('/panel/horarios_masivo', [HorarioController::class, 'store_masivo']);
 Route::patch('/panel/horarios/{id}', [HorarioController::class, 'update']);
 Route::delete('/panel/horarios/{id}', [HorarioController::class, 'destroy'])->name('horarios.destroy');
 

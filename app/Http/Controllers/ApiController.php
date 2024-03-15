@@ -26,6 +26,8 @@ class ApiController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'direccion' => 'nullable',
+            'activo' => 'nullable',
+            'movil' => 'nullable',
             'telefono' => 'required|numeric|digits:8',
             'password' => 'required|string|min:8',
         ]);
@@ -34,6 +36,8 @@ class ApiController extends Controller
             'name' => $validateData['name'],
             'email' => $validateData['email'],
             'direccion' => $validateData['direccion'],
+            'activo' => $validateData['activo'],
+            'movil' => $validateData['movil'],
             'telefono' => $validateData['telefono'],
             'password' =>  Hash::make($validateData['password']),
         ]);
@@ -58,7 +62,7 @@ class ApiController extends Controller
 
         $token = $user->createToken('auth_token')->plainTextToken;
 
-        if ($request->email == "acevedo51198mac@gmail.com") {
+        if ($request->email == "ramses.rivas@gmail.com") {
             return response()->json([
                 'access_token' => $token,
                 'token_type' => 'Bearer',

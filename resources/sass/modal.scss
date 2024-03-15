@@ -114,6 +114,26 @@
                     &:nth-child(odd){
                         background: rgba(162, 109, 80, .2);
                     }
+                    .checkbox{
+                        form{
+                            .btn_estado{
+                                background: transparent;
+                                border: none;
+                                cursor: pointer;
+                                box-shadow: 0 0rem .5rem;
+                                transition: .3s ease;
+                                &:hover{
+                                    box-shadow: 0 0rem 1rem;
+                                }
+                            }
+                            .sussces{
+                                color: green;
+                            }
+                            .close{
+                                color: red;
+                            }
+                        }
+                    }
                 }
                 .accion-rol form {
                     select{

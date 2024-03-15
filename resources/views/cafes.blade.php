@@ -52,8 +52,12 @@
         </div>
 
         <div class="info">
+            @role('su_admin')
             <p class="crear-rol">Crear <span>Rol</span></p>
+            @endrole
+            @role('admin')
             <p class="crear-cafe">Crear <span>Café</span></p>
+            @endrole
             <form method="POST" action="{{ url('logout') }}">
                 @csrf
                 <button type="submit" class="">Salir</button>
@@ -115,12 +119,16 @@
                                     <button type="submit" class="actualizar">Asignar</button>
                                 </form>
                             </td>
-                            <td>
-                                @if ($user->activo == 1)
-                                    <input type="checkbox" id="{{$user->id}}" class="activo" checked>
-                                @else
-                                    <input type="checkbox" id="{{$user->id}}" class="activo">
-                                @endif
+                            <td class="checkbox">
+                                <form action="{{url('/estado_user'.'/'.$user->id)}}" method="post">
+                                    @csrf
+                                    @method('patch')
+                                    @if ($user->activo)
+                                        <button class="btn_estado sussces">✔</button>
+                                    @else
+                                        <button class="btn_estado close">✖</button>
+                                    @endif
+                                </form>
                             </td>
                         </tr>
                     @endforeach
@@ -226,9 +234,9 @@
                         <i class="fa-solid fa-map-location-dot"></i>
                         <select name="provincia" id="provincia">
                             <option value="" disabled selected>Seleccione provincia</option>
-                            @foreach ($datosCostaRica['provincias'] as $provincia)
+                            {{-- @foreach ($datosCostaRica['provincias'] as $provincia)
                                 <option value="{{ $provincia['nombre'] }}">{{ $provincia['nombre'] }}</option>
-                            @endforeach
+                            @endforeach --}}
                         </select>
                     </div>
 
@@ -236,11 +244,11 @@
                         <i class="fa-solid fa-map-location-dot"></i>
                         <select name="canton" id="canton">
                             <option value="" disabled selected>Seleccione canton</option>
-                            @foreach ($datosCostaRica['provincias'] as $provincia)
+                            {{-- @foreach ($datosCostaRica['provincias'] as $provincia)
                                 @foreach ($provincia['cantones'] as $canton)
                                     <option value="{{ $canton['nombre'] }}">{{ $canton['nombre'] }}</option>
                                 @endforeach
-                            @endforeach
+                            @endforeach --}}
                         </select>
                     </div>
 
@@ -248,13 +256,13 @@
                         <i class="fa-solid fa-map-location-dot"></i>
                         <select name="distrito" id="distrito">
                             <option value="" disabled selected>Seleccione distrito</option>
-                            @foreach ($datosCostaRica['provincias'] as $provincia)
+                            {{-- @foreach ($datosCostaRica['provincias'] as $provincia)
                                 @foreach ($provincia['cantones'] as $canton)
                                     @foreach ($canton['distritos'] as $distrito)
                                         <option value="{{ $distrito }}">{{ $distrito }}</option>
                                     @endforeach
                                 @endforeach
-                            @endforeach
+                            @endforeach --}}
                         </select>
                     </div>
 
@@ -405,37 +413,21 @@
 
                     <div class="input">
                         <i class="fa-solid fa-map-location-dot"></i>
-                        <select name="provincia" id="provincia">
+                        <select name="provincia" id="edit-provincia">
                             <option value="" disabled selected>Seleccione provincia</option>
-                            @foreach ($datosCostaRica['provincias'] as $provincia)
-                                <option value="{{ $provincia['nombre'] }}">{{ $provincia['nombre'] }}</option>
-                            @endforeach
                         </select>
                     </div>
 
                     <div class="input">
                         <i class="fa-solid fa-map-location-dot"></i>
-                        <select name="canton" id="canton">
+                        <select name="canton" id="edit-canton">
                             <option value="" disabled selected>Seleccione canton</option>
-                            @foreach ($datosCostaRica['provincias'] as $provincia)
-                                @foreach ($provincia['cantones'] as $canton)
-                                    <option value="{{ $canton['nombre'] }}">{{ $canton['nombre'] }}</option>
-                                @endforeach
-                            @endforeach
                         </select>
                     </div>
 
                     <div class="input">
                         <i class="fa-solid fa-map-location-dot"></i>
-                        <select name="distrito" id="distrito">
-                            <option value="" disabled selected>Seleccione distrito</option>
-                            @foreach ($datosCostaRica['provincias'] as $provincia)
-                                @foreach ($provincia['cantones'] as $canton)
-                                    @foreach ($canton['distritos'] as $distrito)
-                                        <option value="{{ $distrito }}">{{ $distrito }}</option>
-                                    @endforeach
-                                @endforeach
-                            @endforeach
+                        <select name="distrito" id="edit-distrito">
                         </select>
                     </div>
 

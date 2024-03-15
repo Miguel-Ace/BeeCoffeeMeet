@@ -19,14 +19,14 @@ class CafeController extends Controller
 
     public function index()
     {
-        $response = Http::get('https://gist.githubusercontent.com/josuenoel/80daca657b71bc1cfd95a4e27d547abe/raw/5c615419196ed40a3dbdff69cb3d9719b1d6bb1e/provincias_cantones_distritos_costa_rica.json');
-        $datosCostaRica = $response->json();
+        // $response = Http::get('https://gist.githubusercontent.com/josuenoel/80daca657b71bc1cfd95a4e27d547abe/raw/5c615419196ed40a3dbdff69cb3d9719b1d6bb1e/provincias_cantones_distritos_costa_rica.json');
+        // $datosCostaRica = $response->json();
         
         $cafes = Cafe::all();
         $reservaciones = Reserva::all();
         $users = User::all();
         $roles = Role::all();
-        return view('cafes', compact('datosCostaRica','cafes','reservaciones','users','roles'));
+        return view('cafes', compact('cafes','reservaciones','users','roles'));
     }
 
     public function store(Request $request)

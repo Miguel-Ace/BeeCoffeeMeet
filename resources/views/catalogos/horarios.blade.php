@@ -7,7 +7,7 @@
 @endsection
 
 @section('formulario')
-    <form action="{{route('horarios.store')}}" method="post">
+    <form action="{{url('/panel/horarios_masivo/')}}" method="post">
         @csrf
         <div class="contenedor-inputs">
             <div class="input" style="display: none">
@@ -19,13 +19,13 @@
                 <label for="dia">Día</label>
                 <select name="dia" id="dias">
                     <option value="" selected disabled>Seleccionar día</option>
-                    <option  {{old('dia') == "Lunes" ? 'selected' : ''}} value="Lunes">Lunes</option>
-                    <option {{old('dia') == "Martes" ? 'selected' : ''}} value="Martes">Martes</option>
-                    <option {{old('dia') == "Miércoles" ? 'selected' : ''}} value="Miércoles">Miércoles</option>
-                    <option {{old('dia') == "Jueves" ? 'selected' : ''}} value="Jueves">Jueves</option>
-                    <option {{old('dia') == "Viernes" ? 'selected' : ''}} value="Viernes">Viernes</option>
-                    <option {{old('dia') == "Sábado" ? 'selected' : ''}} value="Sábado">Sábado</option>
-                    <option {{old('dia') == "Domingo" ? 'selected' : ''}} value="Domingo">Domingo</option>
+                    @foreach ($dias as $dia)
+                        @if ($dia === 'Generar días automaticamente')
+                            <option  {{old('dia') == $dia ? 'selected' : ''}} style="color:blue;text-align: center;" value="{{$dia}}">{{$dia}}</option>
+                        @else
+                            <option  {{old('dia') == $dia ? 'selected' : ''}} value="{{$dia}}">{{$dia}}</option>
+                        @endif
+                    @endforeach
                 </select>
             </div>
 
@@ -41,7 +41,7 @@
         </div>
 
         <div class="contenedor-btn">
-            <button class="btn-guardar">Guardar</button>
+            <button class="btn-guardar">Generar días</button>
         </div>
     </form>
 @endsection
