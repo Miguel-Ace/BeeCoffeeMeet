@@ -155,7 +155,7 @@
                             <div class="btn-acciones">
                                 <a href="{{url('/panel/otros_cafes/'.$cafe->id)}}" class="btn-setting"><i class="fa-solid fa-gear"></i></a>
 
-                                <button class="btn-editar" data-cafeId="{{$cafe->id}}" data-nombre="{{$cafe->nombre}}" data-dc="{{$cafe->descripcion_corta}}" data-dg="{{$cafe->descripcion_larga}}" data-urlogo="{{$cafe->url_logo}}" data-eslogan="{{$cafe->eslogan}}" data-cantidadmesas="{{$cafe->cantidad_mesas}}" data-capacidad="{{$cafe->capacidad}}" data-provincia="{{$cafe->provincia}}" data-canton="{{$cafe->canton}}" data-distrito="{{$cafe->distrito}}" data-barrio="{{$cafe->barrio}}" data-direccion="{{$cafe->direccion}}" data-max_time_reser="{{$cafe->max_time_reser}}" data-longitud="{{$cafe->longitud}}" data-latitud="{{$cafe->latitud}}" data-promediovaloracion="{{$cafe->promedio_valoracion}}"><i class="fa-solid fa-pencil"></i></button>
+                                <button class="btn-editar" data-cafeId="{{$cafe->id}}"><i class="fa-solid fa-pencil"></i></button>
 
                                 <form action="{{url('cafe/'.$cafe->id)}}"  method="post" id-cafeId="{{$cafe->id}}">
                                     @csrf
@@ -192,111 +192,85 @@
                     </div>
 
                     <div class="input">
-                        {{-- <label for="nombre">Nombre</label> --}}
                         <i class="fa-solid fa-user-tie"></i>
-                        <input type="text" name="nombre" id="nombre" placeholder="Nombre" value="{{old('nombre')}}">
+                        <input type="text" name="nombre" id="nombre" style="{{ $errors->has('nombre') ? 'border: 1px solid red' : '' }}" placeholder="Nombre" value="{{old('nombre')}}">
                     </div>
 
                     <div class="input">
                         <i class="fa-regular fa-file-lines"></i>
-                        <textarea name="descripcion_corta" id="descripcion_corta"  placeholder="Descripción corta">{{old('descripcion_corta')}}</textarea>
+                        <textarea name="descripcion_corta" id="descripcion_corta" style="{{ $errors->has('descripcion_corta') ? 'border: 1px solid red' : '' }}"  placeholder="Descripción corta">{{old('descripcion_corta')}}</textarea>
                     </div>
 
                     <div class="input">
                         <i class="fa-solid fa-file-lines"></i>
-                        <textarea name="descripcion_larga" id="descripcion_larga"  placeholder="Descripción larga">{{old('descripcion_larga')}}</textarea>
+                        <textarea name="descripcion_larga" id="descripcion_larga" style="{{ $errors->has('descripcion_larga') ? 'border: 1px solid red' : '' }}"  placeholder="Descripción larga">{{old('descripcion_larga')}}</textarea>
                     </div>
 
                     <div class="input">
-                        {{-- <label for="url_logo">Url logo</label> --}}
                         <i class="fa-solid fa-link"></i>
-                        <input type="text" name="url_logo" id="url_logo"  placeholder="Url del logo" value="{{old('url_logo')}}">
+                        <input type="text" name="url_logo" id="url_logo" style="{{ $errors->has('url_logo') ? 'border: 1px solid red' : '' }}"  placeholder="Url del logo" value="{{old('url_logo')}}">
                     </div>
 
                     <div class="input">
                         <i class="fa-solid fa-closed-captioning"></i>
-                        <input type="text" name="eslogan" id="eslogan"  placeholder="Eslogan" value="{{old('eslogan')}}">
+                        <input type="text" name="eslogan" id="eslogan" style="{{ $errors->has('eslogan') ? 'border: 1px solid red' : '' }}"  placeholder="Eslogan" value="{{old('eslogan')}}">
                     </div>
 
                     <div class="input">
-                        {{-- <label for="cantidad_mesas">Cantidad de mesas</label> --}}
                         <i class="fa-solid fa-table-list"></i>
-                        <input type="number" name="cantidad_mesas" id="cantidad_mesas"  placeholder="Cantidad de mesas" value="{{old('cantidad_mesas')}}">
+                        <input type="number" name="cantidad_mesas" id="cantidad_mesas" style="{{ $errors->has('cantidad_mesas') ? 'border: 1px solid red' : '' }}"  placeholder="Cantidad de mesas" value="{{old('cantidad_mesas')}}">
                     </div>
 
                     <div class="input">
-                        {{-- <label for="cantidad_mesas">Cantidad de mesas</label> --}}
                         <i class="fa-solid fa-users"></i>
-                        <input type="number" name="capacidad" id="capacidad"  placeholder="Cantidad de personas" value="{{old('capacidad')}}">
+                        <input type="number" name="capacidad" id="capacidad" style="{{ $errors->has('capacidad') ? 'border: 1px solid red' : '' }}"  placeholder="Cantidad de personas" value="{{old('capacidad')}}">
                     </div>
 
                     <div class="input">
                         <i class="fa-solid fa-map-location-dot"></i>
-                        <select name="provincia" id="provincia">
+                        <select name="provincia" id="provincia" style="{{ $errors->has('provincia') ? 'border: 1px solid red' : '' }}">
                             <option value="" disabled selected>Seleccione provincia</option>
-                            {{-- @foreach ($datosCostaRica['provincias'] as $provincia)
-                                <option value="{{ $provincia['nombre'] }}">{{ $provincia['nombre'] }}</option>
-                            @endforeach --}}
                         </select>
                     </div>
 
                     <div class="input">
                         <i class="fa-solid fa-map-location-dot"></i>
-                        <select name="canton" id="canton">
+                        <select name="canton" id="canton" style="{{ $errors->has('canton') ? 'border: 1px solid red' : '' }}">
                             <option value="" disabled selected>Seleccione canton</option>
-                            {{-- @foreach ($datosCostaRica['provincias'] as $provincia)
-                                @foreach ($provincia['cantones'] as $canton)
-                                    <option value="{{ $canton['nombre'] }}">{{ $canton['nombre'] }}</option>
-                                @endforeach
-                            @endforeach --}}
                         </select>
                     </div>
 
                     <div class="input">
                         <i class="fa-solid fa-map-location-dot"></i>
-                        <select name="distrito" id="distrito">
+                        <select name="distrito" id="distrito" style="{{ $errors->has('distrito') ? 'border: 1px solid red' : '' }}">
                             <option value="" disabled selected>Seleccione distrito</option>
-                            {{-- @foreach ($datosCostaRica['provincias'] as $provincia)
-                                @foreach ($provincia['cantones'] as $canton)
-                                    @foreach ($canton['distritos'] as $distrito)
-                                        <option value="{{ $distrito }}">{{ $distrito }}</option>
-                                    @endforeach
-                                @endforeach
-                            @endforeach --}}
                         </select>
                     </div>
 
                     <div class="input">
                         <i class="fa-solid fa-map-location-dot"></i>
-                        <input type="text" name="barrio" id="barrio"  placeholder="barrio" value="{{old('barrio')}}">
+                        <input type="text" name="barrio" id="barrio" style="{{ $errors->has('barrio') ? 'border: 1px solid red' : '' }}"  placeholder="barrio" value="{{old('barrio')}}">
                     </div>
 
                     <div class="input">
                         <i class="fa-solid fa-road"></i>
-                        <textarea name="direccion" id="direccion" placeholder="Dirección">{{old('direccion')}}</textarea>
+                        <textarea name="direccion" id="direccion" style="{{ $errors->has('direccion') ? 'border: 1px solid red' : '' }}" placeholder="Dirección">{{old('direccion')}}</textarea>
                     </div>
 
                     <div class="input">
                         <i class="fa-regular fa-clock"></i>
-                        <input type="number" name="max_time_reser" id="max_time_reser" min="0"  placeholder="Tiempo de reservación (Minutos)" value="{{old('max_time_reser')}}">
+                        <input type="number" name="max_time_reser" id="max_time_reser" style="{{ $errors->has('max_time_reser') ? 'border: 1px solid red' : '' }}" min="0"  placeholder="Tiempo de reservación (Minutos)" value="{{old('max_time_reser')}}">
                     </div>
 
                     <div class="input">
-                        {{-- <label for="latitud">latitud</label> --}}
                         <i class="fa-solid fa-route"></i>
-                        <input type="text" name="latitud" id="latitud"  placeholder="Latitud" value="{{old('latitud')}}">
-                    </div class="input">
-
-                    <div class="input">
-                        {{-- <label for="longitud">longitud</label> --}}
-                        <i class="fa-solid fa-route"></i>
-                        <input type="text" name="longitud" id="longitud"  placeholder="Longitud" value="{{old('longitud')}}">
+                        <input type="text" name="latitud" id="latitud" style="{{ $errors->has('latitud') ? 'border: 1px solid red' : '' }}"  placeholder="Latitud" value="{{old('latitud')}}">
                     </div>
 
-                    {{-- <div class="input rango">
-                        <label for="promedio_valoracion">Promedio valoracion</label>
-                        <input type="range" id="promedio_valoracion" name="promedio_valoracion" min="1" max="5" step="1" value="0">
-                    </div> --}}
+                    <div class="input">
+                        <i class="fa-solid fa-route"></i>
+                        <input type="text" name="longitud" id="longitud" style="{{ $errors->has('longitud') ? 'border: 1px solid red' : '' }}"  placeholder="Longitud" value="{{old('longitud')}}">
+                    </div>
                 </div>
 
                 <i class="fa-solid fa-location-dot ico-mapa"></i>
@@ -373,94 +347,84 @@
                     </div>
 
                     <div class="input">
-                        {{-- <label for="nombre">Nombre</label> --}}
                         <i class="fa-solid fa-user-tie"></i>
-                        <input type="text" name="nombre" id="nombre" placeholder="Nombre" value="{{old('nombre')}}">
+                        <input type="text" name="nombre" id="nombre" style="{{ $errors->has('nombre') ? 'border: 1px solid red' : '' }}" placeholder="Nombre" value="{{old('nombre')}}">
                     </div>
 
                     <div class="input">
                         <i class="fa-regular fa-file-lines"></i>
-                        <textarea name="descripcion_corta" id="descripcion_corta"  placeholder="Descripción corta">{{old('descripcion_corta')}}</textarea>
+                        <textarea name="descripcion_corta" id="descripcion_corta" style="{{ $errors->has('descripcion_corta') ? 'border: 1px solid red' : '' }}"  placeholder="Descripción corta">{{old('descripcion_corta')}}</textarea>
                     </div>
 
                     <div class="input">
                         <i class="fa-solid fa-file-lines"></i>
-                        <textarea name="descripcion_larga" id="descripcion_larga"  placeholder="Descripción larga">{{old('descripcion_larga')}}</textarea>
+                        <textarea name="descripcion_larga" id="descripcion_larga" style="{{ $errors->has('descripcion_larga') ? 'border: 1px solid red' : '' }}"  placeholder="Descripción larga">{{old('descripcion_larga')}}</textarea>
                     </div>
 
                     <div class="input">
-                        {{-- <label for="url_logo">Url logo</label> --}}
                         <i class="fa-solid fa-link"></i>
-                        <input type="text" name="url_logo" id="url_logo"  placeholder="Url del logo" value="{{old('url_logo')}}">
+                        <input type="text" name="url_logo" id="url_logo" style="{{ $errors->has('url_logo') ? 'border: 1px solid red' : '' }}"  placeholder="Url del logo" value="{{old('url_logo')}}">
                     </div>
 
                     <div class="input">
                         <i class="fa-solid fa-closed-captioning"></i>
-                        <input type="text" name="eslogan" id="eslogan"  placeholder="Eslogan" value="{{old('eslogan')}}">
+                        <input type="text" name="eslogan" id="eslogan" style="{{ $errors->has('eslogan') ? 'border: 1px solid red' : '' }}"  placeholder="Eslogan" value="{{old('eslogan')}}">
                     </div>
 
                     <div class="input">
-                        {{-- <label for="cantidad_mesas">Cantidad de mesas</label> --}}
                         <i class="fa-solid fa-table-list"></i>
-                        <input type="number" name="cantidad_mesas" id="cantidad_mesas"  placeholder="Cantidad de mesas" value="{{old('cantidad_mesas')}}">
+                        <input type="number" name="cantidad_mesas" id="cantidad_mesas" style="{{ $errors->has('cantidad_mesas') ? 'border: 1px solid red' : '' }}"  placeholder="Cantidad de mesas" value="{{old('cantidad_mesas')}}">
                     </div>
 
                     <div class="input">
-                        {{-- <label for="cantidad_mesas">Cantidad de mesas</label> --}}
                         <i class="fa-solid fa-users"></i>
-                        <input type="number" name="capacidad" id="capacidad"  placeholder="Cantidad de personas" value="{{old('capacidad')}}">
+                        <input type="number" name="capacidad" id="capacidad" style="{{ $errors->has('capacidad') ? 'border: 1px solid red' : '' }}"  placeholder="Cantidad de personas" value="{{old('capacidad')}}">
                     </div>
 
                     <div class="input">
                         <i class="fa-solid fa-map-location-dot"></i>
-                        <select name="provincia" id="edit-provincia">
+                        <select name="provincia" id="edit-provincia" style="{{ $errors->has('provincia') ? 'border: 1px solid red' : '' }}">
                             <option value="" disabled selected>Seleccione provincia</option>
                         </select>
                     </div>
 
                     <div class="input">
                         <i class="fa-solid fa-map-location-dot"></i>
-                        <select name="canton" id="edit-canton">
+                        <select name="canton" id="edit-canton" style="{{ $errors->has('canton') ? 'border: 1px solid red' : '' }}">
                             <option value="" disabled selected>Seleccione canton</option>
                         </select>
                     </div>
 
                     <div class="input">
                         <i class="fa-solid fa-map-location-dot"></i>
-                        <select name="distrito" id="edit-distrito">
+                        <select name="distrito" id="edit-distrito" style="{{ $errors->has('distrito') ? 'border: 1px solid red' : '' }}">
                         </select>
                     </div>
 
                     <div class="input">
                         <i class="fa-solid fa-map-location-dot"></i>
-                        <input type="text" name="barrio" id="barrio"  placeholder="barrio" value="{{old('barrio')}}">
+                        <input type="text" name="barrio" id="barrio" style="{{ $errors->has('barrio') ? 'border: 1px solid red' : '' }}"  placeholder="barrio" value="{{old('barrio')}}">
                     </div>
 
                     <div class="input">
                         <i class="fa-solid fa-road"></i>
-                        <textarea name="direccion" id="direccion" placeholder="Dirección">{{old('direccion')}}</textarea>
+                        <textarea name="direccion" id="direccion" style="{{ $errors->has('direccion') ? 'border: 1px solid red' : '' }}" placeholder="Dirección">{{old('direccion')}}</textarea>
                     </div>
 
                     <div class="input">
                         <i class="fa-regular fa-clock"></i>
-                        <input type="number" name="max_time_reser" id="max_time_reser" min="0"  placeholder="Tiempo de reservación (Minutos)" value="{{old('max_time_reser')}}">
+                        <input type="number" name="max_time_reser" id="max_time_reser" style="{{ $errors->has('max_time_reser') ? 'border: 1px solid red' : '' }}" min="0"  placeholder="Tiempo de reservación (Minutos)" value="{{old('max_time_reser')}}">
                     </div>
 
                     <div class="input">
-                        {{-- <label for="latitud">latitud</label> --}}
                         <i class="fa-solid fa-route"></i>
-                        <input type="text" name="latitud" id="latitud"  placeholder="Latitud" value="{{old('latitud')}}">
+                        <input type="text" name="latitud" id="latitud" style="{{ $errors->has('latitud') ? 'border: 1px solid red' : '' }}"  placeholder="Latitud" value="{{old('latitud')}}">
                     </div class="input">
 
                     <div class="input">
-                        {{-- <label for="longitud">longitud</label> --}}
                         <i class="fa-solid fa-route"></i>
-                        <input type="text" name="longitud" id="longitud"  placeholder="Longitud" value="{{old('longitud')}}">
+                        <input type="text" name="longitud" id="longitud" style="{{ $errors->has('longitud') ? 'border: 1px solid red' : '' }}"  placeholder="Longitud" value="{{old('longitud')}}">
                     </div>
-                    {{-- <div class="input rango">
-                        <label for="promedio_valoracion">Promedio valoracion</label>
-                        <input type="range" id="promedio_valoracion" name="promedio_valoracion" min="1" max="5" step="1" value="0">
-                    </div> --}}
                 </div>
 
                 <i class="fa-solid fa-location-dot ico-mapa"></i>

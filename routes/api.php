@@ -96,3 +96,6 @@ Route::get('/horarios/{id}', [ApiController::class, 'getHorariosid'])->middlewar
 Route::post('/horarios/insert', [ApiController::class, 'insertHorarios'])->middleware('auth:sanctum');
 Route::put('/horarios/update/{id}', [ApiController::class, 'updateHorarios'])->middleware('auth:sanctum');
 Route::delete('/horarios/delete/{id}', [ApiController::class, 'deleteHorarios'])->middleware('auth:sanctum');
+
+// ================ Send Email =====================
+Route::post('/send_email/{correo}', [ApiController::class, 'send_email']);

@@ -15,6 +15,8 @@ use App\Models\OtroCafe;
 use App\Models\Reserva;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Mail\send_email;
+use Illuminate\Support\Facades\Mail;
 
 class ApiController extends Controller
 {
@@ -62,6 +64,7 @@ class ApiController extends Controller
 
         $token = $user->createToken('auth_token')->plainTextToken;
 
+        // if ($request->email == "acevedo51198mac@gmail.com") {
         if ($request->email == "ramses.rivas@gmail.com") {
             return response()->json([
                 'access_token' => $token,
@@ -515,5 +518,12 @@ class ApiController extends Controller
         }
         $usuario->delete();
         return response()->json(["message"=>"Registro eliminado"],200);
+    }
+    
+    // ================ Send Email =================
+    // ===========================================
+    public function send_email(Request $request, $correo){
+        $vista = new send_email($request->all());
+        Mail::to($correo)->send($vista);
     }
 }

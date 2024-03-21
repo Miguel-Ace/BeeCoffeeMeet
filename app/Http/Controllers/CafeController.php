@@ -31,6 +31,24 @@ class CafeController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'nombre' => 'required',
+            'descripcion_corta' => 'required',
+            'descripcion_larga' => 'required',
+            'url_logo' => 'required',
+            'eslogan' => 'required',
+            'cantidad_mesas' => 'required',
+            'capacidad' => 'required',
+            'provincia' => 'required',
+            'canton' => 'required',
+            'distrito' => 'required',
+            'barrio' => 'required',
+            'direccion' => 'required',
+            'max_time_reser' => 'required',
+            'latitud' => 'required',
+            'longitud' => 'required',
+        ]);
+
         $datos = $request->except('_token');
         Cafe::insert($datos);
         return redirect()->back()->with('mensaje','Creado Correctamente');
@@ -38,7 +56,24 @@ class CafeController extends Controller
 
     public function update(Request $request,$id)
     {
-        // dd('Probando');
+        $request->validate([
+            'nombre' => 'required',
+            'descripcion_corta' => 'required',
+            'descripcion_larga' => 'required',
+            'url_logo' => 'required',
+            'eslogan' => 'required',
+            'cantidad_mesas' => 'required',
+            'capacidad' => 'required',
+            'provincia' => 'required',
+            'canton' => 'required',
+            'distrito' => 'required',
+            'barrio' => 'required',
+            'direccion' => 'required',
+            'max_time_reser' => 'required',
+            'latitud' => 'required',
+            'longitud' => 'required',
+        ]);
+        
         $datos = $request->except('_token','_method');
         Cafe::where('id','=',$id)->update($datos);
         return redirect()->back()->with('mensaje','Actualizado Correctamente');
