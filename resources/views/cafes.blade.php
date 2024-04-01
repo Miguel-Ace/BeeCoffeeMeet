@@ -143,7 +143,7 @@
                 @if ($cafe->id_usuario == auth()->user()->id)
                     <div class="card">
                         <div class="logo-card">
-                            <img src="{{$cafe->url_logo}}" alt="">
+                            <img src="{{asset('storage/imagenes/'.$cafe->url_logo)}}" alt="">
                         </div>
                         <div class="informacion-card">
                             <p class="nombre-empresa">{{$cafe->nombre}}</p>
@@ -153,7 +153,8 @@
                             <button class="btn-reservacion" data-cafeId="{{$cafe->id}}">Reservaciones</button>
                             
                             <div class="btn-acciones">
-                                <a href="{{url('/panel/otros_cafes/'.$cafe->id)}}" class="btn-setting"><i class="fa-solid fa-gear"></i></a>
+                                {{-- <a href="{{url('/panel/otros_cafes/'.$cafe->id)}}" class="btn-setting"><i class="fa-solid fa-gear"></i></a> --}}
+                                <a href="{{url('/panel/banner/'.$cafe->id)}}" class="btn-setting"><i class="fa-solid fa-gear"></i></a>
 
                                 <button class="btn-editar" data-cafeId="{{$cafe->id}}"><i class="fa-solid fa-pencil"></i></button>
 
@@ -182,14 +183,14 @@
         </div>
 
         <div class="contenido-modal">
-            <form method="post" action="{{route('cafe.store')}}">
+            <form method="post" class="form-crear" action="{{route('cafe.store')}}" enctype="multipart/form-data">
                 @csrf
 
                 <div class="contenedor-input-modal">
-                    <div class="oculto">
+                    {{-- <div class="oculto">
                         <label for="id_usuario">id_usuario</label>
                         <input type="number" name="id_usuario" id="id_usuario" value="{{auth()->user()->id}}">
-                    </div>
+                    </div> --}}
 
                     <div class="input">
                         <i class="fa-solid fa-user-tie"></i>
@@ -206,9 +207,9 @@
                         <textarea name="descripcion_larga" id="descripcion_larga" style="{{ $errors->has('descripcion_larga') ? 'border: 1px solid red' : '' }}"  placeholder="Descripción larga">{{old('descripcion_larga')}}</textarea>
                     </div>
 
-                    <div class="input">
-                        <i class="fa-solid fa-link"></i>
-                        <input type="text" name="url_logo" id="url_logo" style="{{ $errors->has('url_logo') ? 'border: 1px solid red' : '' }}"  placeholder="Url del logo" value="{{old('url_logo')}}">
+                    <div class="input file">
+                        <i class="fa-regular fa-image"></i>
+                        <input type="file" name="url_logo" id="url_logo" accept="image/*" style="{{ $errors->has('url_logo') ? 'border: 1px solid red' : '' }}"  value="{{old('url_logo')}}">
                     </div>
 
                     <div class="input">
@@ -336,7 +337,7 @@
 
         <div class="contenido-modal">
             {{-- action="{{url('/'.auth()->user()->name.'/'.$cafe->id)}}" --}}
-            <form method="post">
+            <form method="post" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
 
@@ -361,9 +362,9 @@
                         <textarea name="descripcion_larga" id="descripcion_larga" style="{{ $errors->has('descripcion_larga') ? 'border: 1px solid red' : '' }}"  placeholder="Descripción larga">{{old('descripcion_larga')}}</textarea>
                     </div>
 
-                    <div class="input">
-                        <i class="fa-solid fa-link"></i>
-                        <input type="text" name="url_logo" id="url_logo" style="{{ $errors->has('url_logo') ? 'border: 1px solid red' : '' }}"  placeholder="Url del logo" value="{{old('url_logo')}}">
+                    <div class="input file">
+                        <i class="fa-regular fa-image"></i>
+                        <input type="file" name="url_logo" id="url_logo" accept="image/*" style="{{ $errors->has('url_logo') ? 'border: 1px solid red' : '' }}"  value="{{old('url_logo')}}">
                     </div>
 
                     <div class="input">

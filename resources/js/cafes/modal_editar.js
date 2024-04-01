@@ -7,7 +7,7 @@
  const nombre = mec.querySelector('.container-modal .contenido-modal form .input #nombre')
  const descripcionCorta = mec.querySelector('.container-modal .contenido-modal form .input #descripcion_corta')
  const descripcionLarga = mec.querySelector('.container-modal .contenido-modal form .input #descripcion_larga')
- const urlLogo = mec.querySelector('.container-modal .contenido-modal form .input #url_logo')
+//  const urlLogo = mec.querySelector('.container-modal .contenido-modal form .input #url_logo')
  const eslogan = mec.querySelector('.container-modal .contenido-modal form .input #eslogan')
  const cantidadMesas = mec.querySelector('.container-modal .contenido-modal form .input #cantidad_mesas')
  const capacidad = mec.querySelector('.container-modal .contenido-modal form .input #capacidad')
@@ -41,42 +41,65 @@
     //  console.log(result.provincias[key].nombre)
   }
 
-  select_provincia.addEventListener('input', () => {
-    select_canton.textContent = ''
-    select_distrito.textContent = ''
-    for (const key in result.provincias) {
-      if (select_provincia.value == result.provincias[key].nombre) {
-        const index = key
-        for (const key2 in result.provincias[key].cantones) {
-          const option = document.createElement('option')
-          option.setAttribute('value', result.provincias[index].cantones[key2].nombre)
-          option.textContent = result.provincias[index].cantones[key2].nombre
-          select_canton.appendChild(option)
-          // console.log(result.provincias[index].cantones[key2])
-        }
+  for (const key in result.provincias) {
+    const index = key
+    for (const key2 in result.provincias[key].cantones) {
+      const option = document.createElement('option')
+      option.setAttribute('value', result.provincias[index].cantones[key2].nombre)
+      option.textContent = result.provincias[index].cantones[key2].nombre
+      select_canton.appendChild(option)
+      // console.log(result.provincias[index].cantones[key2])
+    }
+  }
+  
+  for (const key in result.provincias) {
+    const index = key
+    for (const key2 in result.provincias[key].cantones) {
+      for (const key3 in result.provincias[index].cantones[key2].distritos) {
+        const option = document.createElement('option')
+        option.setAttribute('value', result.provincias[index].cantones[key2].distritos[key3])
+        option.textContent = result.provincias[index].cantones[key2].distritos[key3]
+        select_distrito.appendChild(option)
+        // console.log(result.provincias[index].cantones[key2].distritos[key3])
       }
     }
-  })
+  }
+  // select_provincia.addEventListener('input', () => {
+  //   select_canton.textContent = ''
+  //   select_distrito.textContent = ''
+  //   for (const key in result.provincias) {
+  //     if (select_provincia.value == result.provincias[key].nombre) {
+  //       const index = key
+  //       for (const key2 in result.provincias[key].cantones) {
+  //         const option = document.createElement('option')
+  //         option.setAttribute('value', result.provincias[index].cantones[key2].nombre)
+  //         option.textContent = result.provincias[index].cantones[key2].nombre
+  //         select_canton.appendChild(option)
+  //         // console.log(result.provincias[index].cantones[key2])
+  //       }
+  //     }
+  //   }
+  // })
 
-  select_canton.addEventListener('input', () => {
-    select_distrito.textContent = ''
-    for (const key in result.provincias) {
-      if (select_provincia.value == result.provincias[key].nombre) {
-        const index = key
-        for (const key2 in result.provincias[key].cantones) {
-          if (select_canton.value == result.provincias[index].cantones[key2].nombre) {
-            for (const key3 in result.provincias[index].cantones[key2].distritos) {
-              const option = document.createElement('option')
-              option.setAttribute('value', result.provincias[index].cantones[key2].distritos[key3])
-              option.textContent = result.provincias[index].cantones[key2].distritos[key3]
-              select_distrito.appendChild(option)
-              // console.log(result.provincias[index].cantones[key2].distritos[key3])
-            }
-          }
-        }
-      }
-    }
-  })
+  // select_canton.addEventListener('input', () => {
+  //   select_distrito.textContent = ''
+  //   for (const key in result.provincias) {
+  //     if (select_provincia.value == result.provincias[key].nombre) {
+  //       const index = key
+  //       for (const key2 in result.provincias[key].cantones) {
+  //         if (select_canton.value == result.provincias[index].cantones[key2].nombre) {
+  //           for (const key3 in result.provincias[index].cantones[key2].distritos) {
+  //             const option = document.createElement('option')
+  //             option.setAttribute('value', result.provincias[index].cantones[key2].distritos[key3])
+  //             option.textContent = result.provincias[index].cantones[key2].distritos[key3]
+  //             select_distrito.appendChild(option)
+  //             // console.log(result.provincias[index].cantones[key2].distritos[key3])
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
+  // })
 })
 
 async function getApis() {
@@ -121,7 +144,7 @@ async function getApis() {
       nombre.value = result.nombre
       descripcionCorta.value = result.descripcion_corta
       descripcionLarga.value = result.descripcion_larga
-      urlLogo.value = result.url_logo
+      // urlLogo.value = result.url_logo
       eslogan.value = result.eslogan
       cantidadMesas.value = result.cantidad_mesas
       capacidad.value = result.capacidad
@@ -130,9 +153,9 @@ async function getApis() {
       max_time_reser.value = result.max_time_reser
       longitud.value = result.longitud
       latitud.value = result.latitud
-      // select_provincia.value = result.provincia
-      // canton.value = result.canton
-      // distrito.value = result.distrito
+      select_provincia.value = result.provincia
+      select_canton.value = result.canton
+      select_distrito.value = result.distrito
       // valoracion.value = result.
     })
   }

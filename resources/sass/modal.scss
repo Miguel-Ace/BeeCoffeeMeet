@@ -260,6 +260,9 @@
                         display: flex;
                         flex-direction: column;
                         position: relative;
+                        &.file{
+                            border: .1rem solid;
+                        }
                         input{
                             width: 100%;
                             padding: 1rem 3.3rem;

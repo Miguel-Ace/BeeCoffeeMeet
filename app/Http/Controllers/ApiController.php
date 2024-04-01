@@ -16,6 +16,7 @@ use App\Models\Reserva;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Mail\send_email;
+use App\Models\Imagen;
 use Illuminate\Support\Facades\Mail;
 
 class ApiController extends Controller
@@ -520,6 +521,53 @@ class ApiController extends Controller
         return response()->json(["message"=>"Registro eliminado"],200);
     }
     
+    // ================ Imagenes ===================
+    // =============================================
+    
+    public function getImagenes(){
+        return response()->json(Imagen::all()->load('cafes'),200);
+    }
+
+    public function getImagenesPorCafe($cafe) {
+        $imagen = Imagen::where('id_cafe', $cafe)->get()->load('cafes');
+
+        return response()->json($imagen, 200);
+    }
+
+    public function getImagenesid($id){
+        $imagen = Imagen::find($id)->load('cafes');
+        if (is_null($imagen)) {
+            return response()->json(["message"=>"Registro no encontrado"],404);
+        }
+        return response()->json($imagen,200);
+    }
+
+    public function insertImagenes(Request $request){
+        $imagen = Imagen::create($request->all());
+        if (is_null($imagen)) {
+            return response()->json(["message"=>"No se pudo insertar"],404);
+        }
+        return response()->json($imagen,200);
+    }
+
+    public function updateImagenes(Request $request, $id){
+        $imagen = Imagen::find($id);
+        if (is_null($imagen)) {
+            return response()->json(["message"=>"Registro no encontrado"],404);
+        }
+        $imagen->update($request->all());
+        return response()->json($imagen,200);
+    }
+
+    public function deleteImagenes($id){
+        $imagen = Imagen::find($id);
+        if (is_null($imagen)) {
+            return response()->json(["message"=>"No se pudo eliminar"],404);
+        }
+        $imagen->delete();
+        return response()->json(["message"=>"Registro eliminado"],200);
+    }
+
     // ================ Send Email =================
     // ===========================================
     public function send_email(Request $request, $correo){

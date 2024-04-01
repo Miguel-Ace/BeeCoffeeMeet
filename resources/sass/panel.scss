@@ -210,6 +210,14 @@ main{
                         border-left: 1px solid;
                         border-bottom: 1px solid;
                         font-family: 'Poppins', sans-serif;
+                        height: 4.5rem;
+                        &.imagen{
+                            height: 8rem;
+                            img{
+                                width: 7rem;
+                                height: 7rem;
+                            }
+                        }
                         &.acciones{
                             display: flex;
                             justify-content: center;

@@ -1,13 +1,13 @@
 @extends('plantillas.panel')
 
-@vite(['resources/js/panel/banner.js','resources/sass/banner.scss'])
+@vite(['resources/js/panel/banner.js','resources/js/panel/modal_imagenes.js','resources/sass/modal_imagenes.scss'])
 
 @section('titulo')
     Banner
 @endsection
 
 @section('formulario')
-    <form action="{{route('banner.store')}}" method="post">
+    <form action="{{route('banner.store')}}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="contenedor-inputs">
             <div class="input" style="display: none">
@@ -16,8 +16,8 @@
             </div>
 
             <div class="input">
-                <label for="url_imagen">Url de Imagen</label>
-                <input type="text" name="url_imagen" id="url_imagen" value="{{old('url_imagen')}}">
+                <label for="url_imagen">Seleccione un banner</label>
+                <input type="file" name="url_imagen" id="url_imagen" accept="image/*"  value="{{old('url_imagen')}}">
             </div>
 
             <div class="input">
@@ -35,20 +35,9 @@
                 <input type="datetime-local" name="fecha_hora_fin" id="fecha_hora_fin">
             </div>
 
-            <div class="input" style="display: none">
-                {{-- <label for="">Activo</label>
-                <div>
-                    <label>
-                        <input type="radio" name="activo" value="true" id="opcion-si">
-                        Si
-                    </label>
-                    <label>
-                        <input type="radio" name="activo" value="false" id="opcion-no">
-                        No
-                    </label>
-                </div> --}}
+            {{-- <div class="input" style="display: none">
                 <input type="text" name="activo" value="1" id="activo">
-            </div>
+            </div> --}}
         </div>
 
         <div class="contenedor-btn">
@@ -73,7 +62,7 @@
                 @if ($banner->id_cafe == $id)
                     <tr>
                         <td class="img">
-                            <img src="{{$banner->url_imagen}}" style="width: 5rem;" alt="">
+                            <img src="{{asset('storage/banners/'.$banner->url_imagen)}}" style="width: 5rem; height: 4rem" alt="">
                         </td>
                         <td>{{$banner->fecha_hora}}</td>
                         <td>{{$banner->fecha_hora_inicio}}</td>
@@ -83,7 +72,7 @@
                                 <i class="fa-solid fa-pencil"></i>
                             </button>
 
-                            <form class="btn-borrar" onclick="return confirm('¿Estás Seguro de borrarlo?')"  method="post" action="{{route('banner.destroy', $banner->id)}}">
+                            <form class="btn-borrar"  method="post" action="{{url('/panel/banner/'.$banner->id.'/'.$banner->url_imagen)}}">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn-borrar"><i class="fa-solid fa-trash"></i></button>
@@ -106,7 +95,7 @@
 
         <div class="contenido-modal">
             {{-- action="{{url('/'.auth()->user()->name.'/'.$cafe->id)}}" --}}
-            <form method="post" id="form">
+            <form method="post" id="form" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
 
@@ -117,8 +106,8 @@
                     </div>
         
                     <div class="input">
-                        <label for="url_imagen">Url de la imagen</label>
-                        <input type="text" name="url_imagen" id="url_imagen">
+                        <label for="url_imagen">Seleccione un banner</label>
+                        <input type="file" name="url_imagen" id="url_imagen" accept="image/*"  value="{{old('url_imagen')}}">
                     </div>
         
                     <div class="input">

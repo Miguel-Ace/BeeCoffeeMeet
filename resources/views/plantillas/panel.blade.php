@@ -7,6 +7,7 @@
     <title>Document</title>
     <script src="https://kit.fontawesome.com/cd197f289d.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
     @vite(['resources/sass/panel.scss','resources/sass/modal_panel.scss','resources/js/panel/panel.js'])
 </head>
 <body>
@@ -48,6 +49,11 @@
                 <a href="{{url('/panel/banner/'.$id)}}">
                     <i class="fa-regular fa-image"></i>
                     <span>Banner</span>
+                </a>
+                
+                <a href="{{url('/panel/imagenes/'.$id)}}">
+                    <i class="fa-solid fa-photo-film"></i>
+                    <span>Imagenes</span>
                 </a>
                 {{-- <a href="{{url('/panel/multimedias/'.$id)}}">
                     <i class="fa-solid fa-file-video"></i>

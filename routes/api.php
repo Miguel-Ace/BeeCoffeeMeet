@@ -97,5 +97,13 @@ Route::post('/horarios/insert', [ApiController::class, 'insertHorarios'])->middl
 Route::put('/horarios/update/{id}', [ApiController::class, 'updateHorarios'])->middleware('auth:sanctum');
 Route::delete('/horarios/delete/{id}', [ApiController::class, 'deleteHorarios'])->middleware('auth:sanctum');
 
+// ================ Imagenes =====================
+Route::get('/imagenes', [ApiController::class, 'getImagenes'])->middleware('auth:sanctum');
+Route::get('/imagenes_x_cafe/{id_cafe}', [ApiController::class, 'getImagenesPorCafe'])->middleware('auth:sanctum');
+Route::get('/imagenes/{id}', [ApiController::class, 'getImagenesid'])->middleware('auth:sanctum');
+Route::post('/imagenes/insert', [ApiController::class, 'insertImagenes'])->middleware('auth:sanctum');
+Route::put('/imagenes/update/{id}', [ApiController::class, 'updateImagenes'])->middleware('auth:sanctum');
+Route::delete('/imagenes/delete/{id}', [ApiController::class, 'deleteImagenes'])->middleware('auth:sanctum');
+
 // ================ Send Email =====================
 Route::post('/send_email/{correo}', [ApiController::class, 'send_email']);

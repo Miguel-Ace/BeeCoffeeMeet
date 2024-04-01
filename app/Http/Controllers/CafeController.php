@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cafe;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Models\Reserva;
 use App\Models\User;
-use Illuminate\Support\Facades\Http;
+use App\Models\Reserva;
+use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
 
 class CafeController extends Controller
 {
@@ -49,8 +50,30 @@ class CafeController extends Controller
             'longitud' => 'required',
         ]);
 
-        $datos = $request->except('_token');
-        Cafe::insert($datos);
+        $imagenes = $request->file('url_logo');
+        $nombreImagen = $imagenes->getClientOriginalName();
+        
+        $imagenes = $request->file('url_logo')->storeAS('public/imagenes', $nombreImagen);
+        // $datos = $request->except('_token');
+        Cafe::create([
+            'id_usuario' => auth()->user()->id,
+            'nombre' => $request['nombre'],
+            'descripcion_corta' => $request['descripcion_corta'],
+            'descripcion_larga' => $request['descripcion_larga'],
+            'url_logo' => $nombreImagen,
+            'eslogan' => $request['eslogan'],
+            'cantidad_mesas' => $request['cantidad_mesas'],
+            'capacidad' => $request['capacidad'],
+            'provincia' => $request['provincia'],
+            'canton' => $request['canton'],
+            'distrito' => $request['distrito'],
+            'barrio' => $request['barrio'],
+            'direccion' => $request['direccion'],
+            'max_time_reser' => $request['max_time_reser'],
+            'latitud' => $request['latitud'],
+            'longitud' => $request['longitud'], 
+        ]);
+        
         return redirect()->back()->with('mensaje','Creado Correctamente');
     }
 
@@ -60,7 +83,7 @@ class CafeController extends Controller
             'nombre' => 'required',
             'descripcion_corta' => 'required',
             'descripcion_larga' => 'required',
-            'url_logo' => 'required',
+            // 'url_logo' => 'required',
             'eslogan' => 'required',
             'cantidad_mesas' => 'required',
             'capacidad' => 'required',
@@ -74,8 +97,66 @@ class CafeController extends Controller
             'longitud' => 'required',
         ]);
         
-        $datos = $request->except('_token','_method');
-        Cafe::where('id','=',$id)->update($datos);
+        $cafeAModificar = Cafe::find($id);
+        if ($request['url_logo'] !== null) {
+            
+            // Ruta del archivo que deseas eliminar
+            $archivo = 'public/imagenes/'.$cafeAModificar->url_logo;
+
+            // Verificar si el archivo existe antes de intentar eliminarlo
+            if (Storage::exists($archivo)) {
+                // Eliminar el archivo
+                Storage::delete($archivo);
+            }
+
+            // Guardando la imagen en el storage
+            $imagenes = $request->file('url_logo');
+            
+            $nombreImagen = $imagenes->getClientOriginalName();
+            
+            $imagenes = $request->file('url_logo')->storeAS('public/imagenes', $nombreImagen);
+
+            
+            // // Actualizando la informacion en la bd
+            $cafeAModificar->update([
+                'nombre' => $request['nombre'],
+                'descripcion_corta' => $request['descripcion_corta'],
+                'descripcion_larga' => $request['descripcion_larga'],
+                'url_logo' => $nombreImagen,
+                'eslogan' => $request['eslogan'],
+                'cantidad_mesas' => $request['cantidad_mesas'],
+                'capacidad' => $request['capacidad'],
+                'provincia' => $request['provincia'],
+                'canton' => $request['canton'],
+                'distrito' => $request['distrito'],
+                'barrio' => $request['barrio'],
+                'direccion' => $request['direccion'],
+                'max_time_reser' => $request['max_time_reser'],
+                'latitud' => $request['latitud'],
+                'longitud' => $request['longitud'],
+            ]);
+
+            return redirect()->back()->with('mensaje','Actualizado Correctamente');
+        }
+
+        // // Actualizando la informacion en la bd
+        $cafeAModificar->update([
+            'nombre' => $request['nombre'],
+            'descripcion_corta' => $request['descripcion_corta'],
+            'descripcion_larga' => $request['descripcion_larga'],
+            'url_logo' => $cafeAModificar->url_logo,
+            'eslogan' => $request['eslogan'],
+            'cantidad_mesas' => $request['cantidad_mesas'],
+            'capacidad' => $request['capacidad'],
+            'provincia' => $request['provincia'],
+            'canton' => $request['canton'],
+            'distrito' => $request['distrito'],
+            'barrio' => $request['barrio'],
+            'direccion' => $request['direccion'],
+            'max_time_reser' => $request['max_time_reser'],
+            'latitud' => $request['latitud'],
+            'longitud' => $request['longitud'],
+        ]);
         return redirect()->back()->with('mensaje','Actualizado Correctamente');
     }
 

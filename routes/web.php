@@ -10,6 +10,7 @@ use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\auth\LogoutController;
 use App\Http\Controllers\auth\RegisterController;
+use App\Http\Controllers\ImagenController;
 use App\Http\Controllers\ImagenesVideoController;
 use App\Http\Controllers\NotificacioneController;
 use App\Http\Controllers\vista\PrincipalController;
@@ -57,7 +58,7 @@ Route::delete('/panel/notificaciones/{id}', [NotificacioneController::class, 'de
 Route::get('/panel/banner/{id}',[BannerController::class, 'index']);
 Route::post('/panel/banner', [BannerController::class, 'store'])->name('banner.store');
 Route::patch('/panel/banner/{id}', [BannerController::class, 'update']);
-Route::delete('/panel/banner/{id}', [BannerController::class, 'destroy'])->name('banner.destroy');
+Route::delete('/panel/banner/{id}/{imagen}', [BannerController::class, 'destroy']);
 
 // Multimedias
 Route::get('/panel/multimedias/{id}',[ImagenesVideoController::class, 'index']);
@@ -75,6 +76,13 @@ Route::post('/panel/horarios', [HorarioController::class, 'store'])->name('horar
 Route::post('/panel/horarios_masivo', [HorarioController::class, 'store_masivo']);
 Route::patch('/panel/horarios/{id}', [HorarioController::class, 'update']);
 Route::delete('/panel/horarios/{id}', [HorarioController::class, 'destroy'])->name('horarios.destroy');
+
+// Imagenes
+Route::get('/panel/imagenes/{id}',[ImagenController::class, 'index']);
+Route::post('/panel/imagenes', [ImagenController::class, 'store'])->name('imagenes.store');
+// Route::post('/panel/imagenes', [ImagenController::class, 'store_masivo']);
+// Route::patch('/panel/imagenes/{id}', [ImagenController::class, 'update']);
+Route::delete('/panel/imagenes/{id}/{imagen}', [ImagenController::class, 'destroy']);
 
 // Roles
 Route::put('/assign/{id}', [RolController::class, 'update'])->name('role.update');
