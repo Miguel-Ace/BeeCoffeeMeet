@@ -3,7 +3,7 @@
 @vite(['resources/js/panel/horarios.js'])
 
 @section('titulo')
-    horarios
+    Horarios
 @endsection
 
 @section('formulario')
@@ -53,38 +53,47 @@
                 <td>Día</td>
                 <td>Hora inicio</td>
                 <td>Hora fin</td>
+                <td>Estado</td>
                 <td></td>
             </tr>
         </thead>
         <tbody>
             @foreach ($horarios as $h)
-                @if ($h->id_cafe == $id)
-                    <tr>
-                        <td>
-                            {{$h->dia}}
-                        </td>
-                        
-                        <td>
-                            {{$h->hora_inicio}}
-                        </td>
+                <tr>
+                    <td>
+                        {{$h->dia}}
+                    </td>
+                    
+                    <td>
+                        {{$h->hora_inicio}}
+                    </td>
 
-                        <td>
-                            {{$h->hora_fin}}
-                        </td>
+                    <td>
+                        {{$h->hora_fin}}
+                    </td>
 
-                        <td class="acciones">
-                            <button type="button" class="btn-editar" data-id="{{$h->id}}" data-dia="{{$h->dia}}" data-hi="{{$h->hora_inicio}}" data-hf="{{$h->hora_fin}}">
-                                <i class="fa-solid fa-pencil"></i>
-                            </button>
+                    <td class="form-activo">
+                        <form method="post" action="{{url('/panel/horarios_activo/'.$h->id)}}">
+                            @csrf
+                            @method('PATCH')
+                            <button class="{{$h->estado ? 'activo' : 'inactivo'}}">{{$h->estado ? 'Activo' : 'Inactivo'}}</button>
+                        </form>
+                    </td>
 
-                            <form class="btn-borrar" onclick="return confirm('¿Estás Seguro de borrarlo?')"  method="post" action="{{route('horarios.destroy', $h->id)}}">
-                                @csrf
-                                @method('DELETE')
-                                <button class="btn-borrar"><i class="fa-solid fa-trash"></i></button>
-                            </form>
-                        </td>
-                    </tr>
-                @endif
+                    <td class="acciones">
+                        <button type="button" class="btn-editar" data-id="{{$h->id}}" data-dia="{{$h->dia}}" data-hi="{{$h->hora_inicio}}" data-hf="{{$h->hora_fin}}">
+                            <i class="fa-solid fa-pencil"></i>
+                        </button>
+
+                        <form class="btn-borrar" method="post" action="{{route('horarios.destroy', $h->id)}}">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn-borrar"><i class="fa-solid fa-trash"></i></button>
+                        </form>
+                    </td>
+                </tr>
+                {{-- @if ($h->id_cafe == $id)
+                @endif --}}
             @endforeach
         </tbody>
     </table>
@@ -113,13 +122,13 @@
                     <div class="input">
                         <label for="dia">Día</label>
                         <select name="dia" id="dia">
-                            <option value="Lunes">Lunes</option>
-                            <option value="Martes">Martes</option>
-                            <option value="Miércoles">Miércoles</option>
-                            <option value="Jueves">Jueves</option>
-                            <option value="Viernes">Viernes</option>
-                            <option value="Sábado">Sábado</option>
-                            <option value="Domingo">Domingo</option>
+                            <option value="" selected disabled>Seleccionar día</option>
+                            @foreach ($dias as $dia)
+                                <option value="{{$dia}}">{{$dia}}</option>
+                                @if ($dia === 'Domingo')
+                                    @break
+                                @endif
+                            @endforeach
                         </select>
                     </div>
         

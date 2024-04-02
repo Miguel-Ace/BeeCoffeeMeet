@@ -75,6 +75,7 @@ Route::get('/panel/horarios/{id}',[HorarioController::class, 'index']);
 Route::post('/panel/horarios', [HorarioController::class, 'store'])->name('horarios.store');
 Route::post('/panel/horarios_masivo', [HorarioController::class, 'store_masivo']);
 Route::patch('/panel/horarios/{id}', [HorarioController::class, 'update']);
+Route::patch('/panel/horarios_activo/{id}', [HorarioController::class, 'update_activo']);
 Route::delete('/panel/horarios/{id}', [HorarioController::class, 'destroy'])->name('horarios.destroy');
 
 // Imagenes

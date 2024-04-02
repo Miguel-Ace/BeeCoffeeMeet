@@ -218,6 +218,29 @@ main{
                                 height: 7rem;
                             }
                         }
+                        &.form-activo{
+                            form{
+                                height: 100%;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                button{
+                                    border-radius: 1rem;
+                                    border: none;
+                                    padding: 0 1rem;
+                                    font-family: 'Poppins', sans-serif;
+                                    font-weight: 700;
+                                    cursor: pointer;
+                                    box-shadow: 0 .1rem .7rem ;
+                                    &.activo{
+                                        color: #0B5345;
+                                    }
+                                    &.inactivo{
+                                        color: #C0392B;
+                                    }
+                                }
+                            }
+                        }
                         &.acciones{
                             display: flex;
                             justify-content: center;

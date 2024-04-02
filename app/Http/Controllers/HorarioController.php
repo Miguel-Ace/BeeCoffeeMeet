@@ -17,7 +17,8 @@ class HorarioController extends Controller
     public function index($id)
     {
         $cafeNombre = Cafe::find($id);
-        $horarios = Horario::all();
+        // $horarios = Horario::all();
+        $horarios = Horario::where('id_cafe', $id)->orderBy('num_dia')->get();
         $dias = ["Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo","Generar días automaticamente"];
         return view('catalogos.horarios', compact('id','cafeNombre','horarios','dias'));
     }
@@ -34,8 +35,15 @@ class HorarioController extends Controller
             'hora_fin.required' => 'Digite la hora que finaliza',
         ]);
 
-        $datos = $request->except('_token');
-        Horario::insert($datos);
+        // $datos = $request->except('_token');
+        Horario::create([
+            'id_cafe' => $request['id_cafe'],
+            'dia' => $request['dia'],
+            'hora_inicio' => $request['hora_inicio'],
+            'hora_fin' => $request['hora_fin'],
+            'estado' => 1,
+        ]);
+
         return redirect()->back()->with('mensaje','Creado Correctamente');
     }
 
@@ -52,21 +60,38 @@ class HorarioController extends Controller
 
         // $exist_horario_for_user = Horario::where('id_cafe',$id)->get();
         
+        function data($request, $dia, $num_dia){
+            return [
+                'id_cafe' => $request['id_cafe'],
+                'dia' => $dia,
+                'hora_inicio' => $request['hora_inicio'],
+                'hora_fin' => $request['hora_fin'],
+                'estado' => 1,
+                'num_dia' => $num_dia,
+            ];
+        }
+
+        $dias = [["Lunes",1],["Martes",2],["Miércoles",3],["Jueves",4],["Viernes",5],["Sábado",6],["Domingo",7]];
+
         if ($request['dia'] === 'Generar días automaticamente') {
             // Crear todos los dias por defecto
-            $dias = ["Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo"];
             foreach ($dias as $i => $dia) {
-                Horario::create([
-                    'id_cafe' => $request['id_cafe'],
-                    'dia' => $dia,
-                    'hora_inicio' => $request['hora_inicio'],
-                    'hora_fin' => $request['hora_fin'],
-                ]);
+                $isExistDia = Horario::where('id_cafe',$request['id_cafe'])
+                    ->where('dia',$dia[0])
+                    ->exists();
+
+                if (!$isExistDia) {
+                    Horario::create(data($request, $dia[0], $dia[1]));
+                }
             }
         }else{
             // Crear un dia a la vez
-            $datos = $request->except('_token');
-            Horario::insert($datos);
+            foreach ($dias as $i => $dia) {
+                if ($dia[0] == $request['dia']) {
+                    Horario::create(data($request, $dia[0], $dia[1]));
+                    break;
+                }
+            }
         }
 
         return redirect()->back()->with('mensaje','Creado Correctamente');
@@ -77,6 +102,19 @@ class HorarioController extends Controller
         $datos = $request->except('_token','_method');
         Horario::where('id','=',$id)->update($datos);
         return redirect()->back()->with('mensaje','Actualizado Correctamente');
+    }
+
+    public function update_activo($id)
+    {
+        $dia = Horario::where('id',$id);
+        $diaEstado = $dia->value('estado');
+        $estado = $diaEstado ? 0 : 1;
+
+        $dia->update([
+            'estado' => $estado
+        ]);
+
+        return redirect()->back()->with('mensaje','Estado Actualizado');
     }
 
     public function destroy($id)

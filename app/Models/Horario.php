@@ -16,6 +16,8 @@ class Horario extends Model
         'dia',
         'hora_inicio',
         'hora_fin',
+        'estado',
+        'num_dia',
     ];
 
     function cafes(){
