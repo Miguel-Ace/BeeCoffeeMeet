@@ -17,7 +17,7 @@
 window.onload = obtenerCoordenadas;
 
 const icoMapa = document.querySelectorAll('.ico-mapa')
-const divMapa = document.querySelector('.mapa')
+const divMapa = document.querySelector('.contenedor-map')
 const salirMapa = document.querySelector('.salir')
 let latInput
 let lonInput
@@ -31,6 +31,9 @@ icoMapa.forEach(item => {
 })
 
 salirMapa.onclick = () => {
+    divMapa.classList.remove('activo')
+}
+divMapa.onclick = () => {
     divMapa.classList.remove('activo')
 }
 

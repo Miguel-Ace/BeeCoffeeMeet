@@ -21,7 +21,9 @@ class BannerController extends Controller
     {
         $cafeNombre = Cafe::find($id);
         $otrosBanner = Banner::all();
-        return view('catalogos.banner', compact('id','cafeNombre','otrosBanner'));
+        $tipos = ['Premium','Regular'];
+        $acciones = ['Local','Reservación'];
+        return view('catalogos.banner', compact('id','cafeNombre','otrosBanner','tipos','acciones'));
     }
 
     public function store(Request $request)
@@ -31,6 +33,8 @@ class BannerController extends Controller
             'fecha_hora' => 'required',
             'fecha_hora_inicio' => 'required',
             'fecha_hora_fin' => 'required',
+            'tipo' => 'required',
+            'acciones' => 'required',
             // 'activo' => 'required',
         ]);
 
@@ -46,8 +50,9 @@ class BannerController extends Controller
             'fecha_hora_inicio' => $request['fecha_hora_inicio'],
             'fecha_hora_fin' => $request['fecha_hora_fin'],
             'activo' => 1,
+            'tipo' => $request['tipo'],
+            'acciones' => $request['acciones'],
         ]);
-
         // $datos = $request->except('_token');
         // Banner::insert($datos);
         return redirect()->back()->with('mensaje','Creado Correctamente');
@@ -60,6 +65,8 @@ class BannerController extends Controller
             'fecha_hora' => 'required',
             'fecha_hora_inicio' => 'required',
             'fecha_hora_fin' => 'required',
+            'tipo' => 'required',
+            'acciones' => 'required',
             // 'activo' => 'required',
         ]);
 
@@ -91,6 +98,8 @@ class BannerController extends Controller
                 'fecha_hora' => $request['fecha_hora'],
                 'fecha_hora_inicio' => $request['fecha_hora_inicio'],
                 'fecha_hora_fin' => $request['fecha_hora_fin'],
+                'tipo' => $request['tipo'],
+                'acciones' => $request['acciones'],
                 // 'activo' => 1,
             ]);
 
@@ -104,6 +113,8 @@ class BannerController extends Controller
             'fecha_hora' => $request['fecha_hora'],
             'fecha_hora_inicio' => $request['fecha_hora_inicio'],
             'fecha_hora_fin' => $request['fecha_hora_fin'],
+            'tipo' => $request['tipo'],
+            'acciones' => $request['acciones'],
             // 'activo' => 1,
         ]);
 

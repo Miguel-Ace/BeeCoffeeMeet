@@ -16,7 +16,9 @@ use App\Models\Reserva;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Mail\send_email;
+use App\Models\Favorito;
 use App\Models\Imagen;
+use App\Models\Lenguaje_soez;
 use Illuminate\Support\Facades\Mail;
 
 class ApiController extends Controller
@@ -566,6 +568,76 @@ class ApiController extends Controller
         }
         $imagen->delete();
         return response()->json(["message"=>"Registro eliminado"],200);
+    }
+
+    // ================ Favoritos ===============
+    // ===========================================
+    public function getFavoritos(){
+        return response()->json(Favorito::all()->load('cafes','usuarios'),200);
+    }
+
+    public function insertFavoritos(Request $request){
+        $favorito = Favorito::where('id_local',$request['id_local'])
+                            ->where('id_usuario',$request['id_usuario'])->first();
+
+        if (!$favorito) {
+            $nuevoFavorito = Favorito::create([
+                'id_local' => $request['id_local'],
+                'id_usuario' => $request['id_usuario'],
+                'estado' => 1,
+            ]);
+            return response()->json($nuevoFavorito,200);
+        }else{ 
+            $favorito->update(['estado' => $favorito->estado == 1 ? 0 : 1]);
+            return response()->json($favorito,200);
+        }
+    }
+
+    // ================ Palabras soeces =================
+    // ===========================================
+    public function getPalabrasUsuarioArreglo($id_user){
+        $palabras_x_usuario = Lenguaje_soez::where('id_usuario', $id_user)->get();
+
+        if ($palabras_x_usuario->isEmpty()) {
+            return response()->json([],200);
+        }
+
+        // Devolver las palabras en formato JSON con código de estado 200
+        return response()->json($palabras_x_usuario, 200);
+    }
+
+    public function getPalabrasUsuario($id_user){
+        $palabras_x_usuario = Lenguaje_soez::where('id_usuario', $id_user)->get();
+
+        if ($palabras_x_usuario->isEmpty()) {
+            return response()->json(["message" => "No se encontraron palabras asociadas al usuario"],404);
+        }
+    
+        // Preparar un arreglo para almacenar las palabras
+        $palabras = '';
+    
+        // Iterar sobre las palabras obtenidas y agregarlas al arreglo
+        foreach ($palabras_x_usuario as $palabra) {
+            $palabras = $palabras . $palabra->palabras.',';
+        }
+    
+        // Devolver las palabras en formato JSON con código de estado 200
+        return response()->json($palabras, 200);
+    }
+
+    public function insertPalabras(Request $request){
+        $palabras = $request->all();
+
+        Lenguaje_soez::where('id_usuario', $palabras[0]['id'])->delete();
+
+        foreach ($palabras as $key => $palabra) {
+           Lenguaje_soez::create([
+            'id_usuario' => $palabra['id'],
+            'palabras' => $palabra['palabra']
+           ]);
+        }
+
+        return response()->json($palabras,200);
     }
 
     // ================ Send Email =================

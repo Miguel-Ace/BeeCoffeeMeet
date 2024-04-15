@@ -105,5 +105,14 @@ Route::post('/imagenes/insert', [ApiController::class, 'insertImagenes'])->middl
 Route::put('/imagenes/update/{id}', [ApiController::class, 'updateImagenes'])->middleware('auth:sanctum');
 Route::delete('/imagenes/delete/{id}', [ApiController::class, 'deleteImagenes'])->middleware('auth:sanctum');
 
+// ================ Favoritos =====================
+Route::get('/favoritos', [ApiController::class, 'getFavoritos']);
+Route::post('/favoritos', [ApiController::class, 'insertFavoritos']);
+
+// ================ Palabras soeces =====================
+Route::get('/palabras_x_usuario/{id_user}', [ApiController::class, 'getPalabrasUsuario']);
+Route::get('/palabras_x_usuario_arreglo/{id_user}', [ApiController::class, 'getPalabrasUsuarioArreglo']);
+Route::post('/palabras_soeces/insert', [ApiController::class, 'insertPalabras'])->middleware('auth:sanctum');
+
 // ================ Send Email =====================
 Route::post('/send_email/{correo}', [ApiController::class, 'send_email']);

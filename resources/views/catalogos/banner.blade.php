@@ -17,7 +17,7 @@
 
             <div class="input">
                 <label for="url_imagen">Seleccione un banner</label>
-                <input type="file" name="url_imagen" id="url_imagen" accept="image/*"  value="{{old('url_imagen')}}">
+                <input type="file" name="url_imagen" class="file" id="url_imagen" accept="image/*"  value="{{old('url_imagen')}}">
             </div>
 
             <div class="input">
@@ -35,9 +35,23 @@
                 <input type="datetime-local" name="fecha_hora_fin" id="fecha_hora_fin">
             </div>
 
-            {{-- <div class="input" style="display: none">
-                <input type="text" name="activo" value="1" id="activo">
-            </div> --}}
+            <div class="input">
+                <label for="tipo">Tipo</label>
+                <select name="tipo" id="tipo">
+                    @foreach ($tipos as $tipo)
+                        <option value="{{$tipo}}" {{old('tipo') == $tipo ? 'selected' : ''}}>{{$tipo}}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="input">
+                <label for="acciones">Acciones</label>
+                <select name="acciones" id="acciones">
+                    @foreach ($acciones as $accion)
+                        <option value="{{$accion}}" {{old('acciones') == $accion ? 'selected' : ''}}>{{$accion}}</option>
+                    @endforeach
+                </select>
+            </div>
         </div>
 
         <div class="contenedor-btn">
@@ -54,6 +68,8 @@
                 <td>Fecha y hora</td>
                 <td>Fecha y hora inicio</td>
                 <td>Fecha y hora fin</td>
+                <td>Tipo</td>
+                <td>Acciones</td>
                 <td></td>
             </tr>
         </thead>
@@ -67,8 +83,10 @@
                         <td>{{$banner->fecha_hora}}</td>
                         <td>{{$banner->fecha_hora_inicio}}</td>
                         <td>{{$banner->fecha_hora_fin}}</td>
+                        <td>{{$banner->tipo}}</td>
+                        <td>{{$banner->acciones}}</td>
                         <td class="acciones">
-                            <button type="button" class="btn-editar" data-id="{{$banner->id}}" data-urlimagen="{{$banner->url_imagen}}" data-fh="{{$banner->fecha_hora}}" data-fhi="{{$banner->fecha_hora_inicio}}" data-fhf="{{$banner->fecha_hora_fin}}">
+                            <button type="button" class="btn-editar" data-id="{{$banner->id}}" data-urlimagen="{{$banner->url_imagen}}" data-fh="{{$banner->fecha_hora}}" data-fhi="{{$banner->fecha_hora_inicio}}" data-fhf="{{$banner->fecha_hora_fin}}" data-t="{{$banner->tipo}}" data-acc="{{$banner->acciones}}">
                                 <i class="fa-solid fa-pencil"></i>
                             </button>
 
@@ -107,7 +125,7 @@
         
                     <div class="input">
                         <label for="url_imagen">Seleccione un banner</label>
-                        <input type="file" name="url_imagen" id="url_imagen" accept="image/*"  value="{{old('url_imagen')}}">
+                        <input type="file" name="url_imagen" class="file" id="url_imagen" accept="image/*"  value="{{old('url_imagen')}}">
                     </div>
         
                     <div class="input">
@@ -125,6 +143,24 @@
                         <input type="datetime-local" name="fecha_hora_fin" id="fecha_hora_fin">
                     </div>
         
+                    <div class="input">
+                        <label for="tipo">Tipo</label>
+                        <select name="tipo" id="tipo">
+                            @foreach ($tipos as $tipo)
+                                <option value="{{$tipo}}" {{old('tipo') == $tipo ? 'selected' : ''}}>{{$tipo}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="input">
+                        <label for="acciones">Acciones</label>
+                        <select name="acciones" id="acciones">
+                            @foreach ($acciones as $accion)
+                                <option value="{{$accion}}" {{old('acciones') == $accion ? 'selected' : ''}}>{{$accion}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
                     <div class="input" style="display: none">
                         <input type="text" name="activo" value="1" id="activo">
                     </div>

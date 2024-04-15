@@ -17,7 +17,7 @@
 
             <div class="input">
                 <label for="imagen">Imagen</label>
-                <input type="file" name="imagen" id="imagen" accept="image/*" value="{{old('imagen')}}">
+                <input type="file" name="imagen" class="file" id="imagen" accept="image/*" value="{{old('imagen')}}">
                 @error('imagen')
                     <p>{{$message}}</p>
                 @enderror

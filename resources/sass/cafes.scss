@@ -73,7 +73,7 @@ header{
                 color: white;
             }
         }
-        .crear-cafe, .crear-rol{
+        .crear-cafe, .crear-rol, .crear-lenguaje-soez{
             border: 1px solid white;
             border-radius: .5rem;
             cursor: pointer;
@@ -180,6 +180,11 @@ main{
                         background-color: unset;
                         transition: .3s ease;
                         transform: translateY(10rem);
+                        &.btn-favoritos:hover{
+                            color: #CB4335;
+                            background-color: white;
+                            border: 1px solid #CB4335;
+                        }
                         &.btn-editar:hover{
                             color: #117A65;
                             background-color: white;

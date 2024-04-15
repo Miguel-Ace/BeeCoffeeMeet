@@ -73,6 +73,7 @@ Route::patch('/panel/comentarios/{id}', [ComentarioController::class, 'update'])
 // Horarios
 Route::get('/panel/horarios/{id}',[HorarioController::class, 'index']);
 Route::post('/panel/horarios', [HorarioController::class, 'store'])->name('horarios.store');
+Route::post('/panel/horarios_duplicado/{id}', [HorarioController::class, 'store_duplicado'])->name('horarios.store');
 Route::post('/panel/horarios_masivo', [HorarioController::class, 'store_masivo']);
 Route::patch('/panel/horarios/{id}', [HorarioController::class, 'update']);
 Route::patch('/panel/horarios_activo/{id}', [HorarioController::class, 'update_activo']);
@@ -88,3 +89,6 @@ Route::delete('/panel/imagenes/{id}/{imagen}', [ImagenController::class, 'destro
 // Roles
 Route::put('/assign/{id}', [RolController::class, 'update'])->name('role.update');
 Route::delete('/assign/{id}', [RolController::class, 'destroy'])->name('role.destroy');
+
+// Enviar mensaje para cambiar un comentario
+Route::post('/send_email_cambio_comentario/{id_comentario}/{id_usuario}', [ComentarioController::class, 'send_email_cambio_comentario']);

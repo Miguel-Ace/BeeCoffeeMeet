@@ -5,24 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Banner extends Model
+class Favorito extends Model
 {
     use HasFactory;
-
+    
     public $timestamps = false;
     protected $fillable = [
         'id',
-        'id_cafe',
-        'url_imagen',
-        'fecha_hora',
-        'fecha_hora_inicio',
-        'fecha_hora_fin',
-        'tipo',
-        'acciones',
-        'activo',
+        'id_local',
+        'id_usuario',
+        'estado',
     ];
 
     function cafes(){
-        return $this->belongsTo(Cafe::class, 'id_cafe');
+        return $this->belongsTo(Cafe::class, 'id_local');
+    }
+
+    function usuarios(){
+        return $this->belongsTo(User::class, 'id_usuario');
     }
 }

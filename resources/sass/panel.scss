@@ -19,6 +19,9 @@ p{
 img{
     width: 100%;
 }
+.file{
+    border: .1rem solid;
+}
 main{
     display: flex;
     .izq{
@@ -150,11 +153,10 @@ main{
                     font-family: 'Poppins', sans-serif;
                     padding: 0 1rem;
                     .contenedor-inputs{
-                        display: flex;
-                        flex-wrap: wrap;
+                        display: grid;
+                        grid-template-columns: repeat(3, 1fr);
                         gap: 2rem;
                         .input{
-                            flex: 0 0 calc(30%);
                             display: flex;
                             flex-direction: column;
                             input, select{
@@ -263,39 +265,55 @@ main{
                                     border-radius: .5rem;
                                 }
                             }
-                            .btn-activar{
+                            .btn-abrir-modal-enviar, .btn-activar, .btn-desactivar{
                                 padding: .3rem .5rem;
                                 font-size: 3rem;
-                                color: #0B5345;
                                 &:hover{
-                                    background-color: #117A65;
                                     color: white;
                                     border-radius: .3rem;
                                     scale: .7;
                                 }
                             }
+                            .btn-abrir-modal-enviar{
+                                color: #0B5345;
+                                &:hover{
+                                    background-color: #117A65;
+                                }
+                            }
+                            .btn-activar{
+                                color: #0B5345;
+                                &:hover{
+                                    background-color: #117A65;
+                                }
+                            }
                             .btn-desactivar{
-                                padding: .3rem .5rem;
-                                font-size: 3rem;
                                 color: #922B21;
                                 &:hover{
                                     background-color: #C0392B;
-                                    color: white;
-                                    border-radius: .3rem;
-                                    scale: .7;
                                 }
                             }
                             form{
                                 margin: 0;
                                 display: flex;
-                                .btn-borrar{
+                                .btn-borrar, .btn-crear{
                                     padding: .5rem .9rem;
                                     border: 1px solid white;
+                                    &:hover{
+                                        border-radius: .5rem;
+                                    }
+                                }
+                                .btn-borrar{
                                     color: #922B21;
                                     &:hover{
                                         color: #C0392B;
                                         border: 1px solid #C0392B;
-                                        border-radius: .5rem;
+                                    }
+                                }
+                                .btn-crear{
+                                    color: #1F618D;
+                                    &:hover{
+                                        color: #2980B9;
+                                        border: 1px solid #2980B9;
                                     }
                                 }
                             }

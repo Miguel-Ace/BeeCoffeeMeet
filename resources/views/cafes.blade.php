@@ -17,6 +17,8 @@
         'resources/js/cafes/coordenadas.js',
         'resources/js/cafes/modal_crear.js',
         'resources/js/cafes/modal_editar.js',
+        'resources/js/cafes/modal_lenguaje_soez.js',
+        'resources/js/cafes/modal_favoritos.js',
         'resources/js/cafes/reservas.js',
         'resources/js/cafes/cafes.js',
         'resources/js/cafes/mapa_coordenadas.js',
@@ -24,6 +26,8 @@
         ])
 </head>
 <body>
+    <span id="id" style="display: none">{{auth()->user()->id}}</span>
+    
     @if (session('mensaje'))
         <style>
             .custom-popup-class {
@@ -56,6 +60,7 @@
             <p class="crear-rol">Crear <span>Rol</span></p>
             @endrole
             @role('admin')
+            <p class="crear-lenguaje-soez">Lenguaje soez </p>
             <p class="crear-cafe">Crear <span>Café</span></p>
             @endrole
             <form method="POST" action="{{ url('logout') }}">
@@ -65,6 +70,33 @@
             <p>Hola: {{auth()->user()->name}}</p>
         </div>
     </header>
+
+    <div class="contenedor-favoritos">
+        <div class="favoritos">
+            <div class="cerrar">
+                <span>x</span>
+            </div>
+            <div class="contenedor-input">
+                <p class="titulo-favoritos">Favoritos</p>
+                <div class="todos-datos"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="contenedor-lenguaje-soez">
+        <div class="lenguaje-soez">
+            <div class="cerrar">
+                <span>x</span>
+            </div>
+            <div class="contenedor-input">
+                <input type="text" placeholder="Escribe una palabra" class="input-palabras">
+                <button class="add-palabra"><i class="fa-solid fa-plus"></i></button>
+            </div>
+            <div class="palabras"></div>
+            
+            <button class="add-todas-palabras">Guardar información</button>
+        </div>
+    </div>
 
     <div class="contenedor-map">
         <div class="mapa">
@@ -153,7 +185,8 @@
                             <button class="btn-reservacion" data-cafeId="{{$cafe->id}}">Reservaciones</button>
                             
                             <div class="btn-acciones">
-                                {{-- <a href="{{url('/panel/otros_cafes/'.$cafe->id)}}" class="btn-setting"><i class="fa-solid fa-gear"></i></a> --}}
+                                <button class="btn-favoritos" data-cafeId="{{$cafe->id}}"><i class="fa-solid fa-heart"></i></button>
+
                                 <a href="{{url('/panel/banner/'.$cafe->id)}}" class="btn-setting"><i class="fa-solid fa-gear"></i></a>
 
                                 <button class="btn-editar" data-cafeId="{{$cafe->id}}"><i class="fa-solid fa-pencil"></i></button>

@@ -8,6 +8,8 @@ const form = document.querySelector('#form')
 const fechaHora = document.querySelector('#fecha_hora')
 const fechaHoraInicio = document.querySelector('#fecha_hora_inicio')
 const fechaHoraFin = document.querySelector('#fecha_hora_fin')
+const tipo = document.querySelector('#tipo')
+const acciones = document.querySelector('#acciones')
 
 btnEditar.forEach(item => {
     item.onclick = () => {
@@ -17,6 +19,8 @@ btnEditar.forEach(item => {
         fechaHora.value = item.getAttribute('data-fh')
         fechaHoraInicio.value = item.getAttribute('data-fhi')
         fechaHoraFin.value = item.getAttribute('data-fhf')
+        tipo.value = item.getAttribute('data-t')
+        acciones.value = item.getAttribute('data-acc')
     }
 })
 

@@ -47,6 +47,23 @@ class HorarioController extends Controller
         return redirect()->back()->with('mensaje','Creado Correctamente');
     }
 
+    public function store_duplicado(Request $request, $id)
+    {
+        $hora = Horario::find($id);
+
+        // $datos = $request->except('_token');
+        Horario::create([
+            'id_cafe' => $hora->id_cafe,
+            'dia' => $hora->dia,
+            'hora_inicio' => $hora->hora_inicio,
+            'hora_fin' => $hora->hora_fin,
+            'estado' => $hora->estado,
+            'num_dia' => $hora->num_dia,
+        ]);
+
+        return redirect()->back()->with('mensaje','Duplicado Correctamente');
+    }
+
     public function store_masivo(Request $request)
     {
         $request->validate([

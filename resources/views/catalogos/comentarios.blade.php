@@ -14,7 +14,7 @@
                 <td>Fecha y hora</td>
                 <td>Estrellas</td>
                 <td>Activo</td>
-                <td></td>
+                <td>Desactivar</td>
             </tr>
         </thead>
         <tbody>
@@ -26,6 +26,14 @@
                         <td>{{$comentario->estrellas}}</td>
                         <td>{{$comentario->activo}}</td>
                         <td class="acciones">
+                            @role('admin')
+                            <form action="{{url('/send_email_cambio_comentario'.'/'.$comentario->id_cafe.'/'.$comentario->id_usuario)}}" method="post">
+                                @csrf
+                                <button class="btn-abrir-modal-enviar"><i class="fa-regular fa-envelope"></i></button>
+                            </form>
+                            @endrole
+
+                            @role('su_admin')
                             <button type="button" class="btn-activar" data-id="{{$comentario->id}}" idUser="{{$comentario->id_usuario}}" comen="{{$comentario->comentario}}" comen="{{$comentario->comentario}}" fe="{{$comentario->fecha_hora}}" es="{{$comentario->estrellas}}" activo="1">
                                 <i class="fa-solid fa-check"></i>
                             </button>
@@ -33,6 +41,7 @@
                             <button type="button" class="btn-desactivar" data-id="{{$comentario->id}}" idUser="{{$comentario->id_usuario}}" comen="{{$comentario->comentario}}" comen="{{$comentario->comentario}}" fe="{{$comentario->fecha_hora}}" es="{{$comentario->estrellas}}" activo="0">
                                 <i class="fa-solid fa-xmark"></i>
                             </button>
+                            @endrole
                         </td>
                     </tr>
                 @endif

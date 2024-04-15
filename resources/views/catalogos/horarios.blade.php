@@ -81,11 +81,16 @@
                     </td>
 
                     <td class="acciones">
+                        <form method="post" action="{{url('/panel/horarios_duplicado/'.$h->id)}}">
+                            @csrf
+                            <button class="btn-crear"><i class="fa-solid fa-plus"></i></button>
+                        </form>
+
                         <button type="button" class="btn-editar" data-id="{{$h->id}}" data-dia="{{$h->dia}}" data-hi="{{$h->hora_inicio}}" data-hf="{{$h->hora_fin}}">
                             <i class="fa-solid fa-pencil"></i>
                         </button>
 
-                        <form class="btn-borrar" method="post" action="{{route('horarios.destroy', $h->id)}}">
+                        <form method="post" action="{{route('horarios.destroy', $h->id)}}">
                             @csrf
                             @method('DELETE')
                             <button class="btn-borrar"><i class="fa-solid fa-trash"></i></button>
