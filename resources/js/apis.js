@@ -1,8 +1,8 @@
 export async function api(estado,url,datos = []) {
     // Definir la URL del endpoint para obtener el token
-    const URL_SERVER = 'http://161.22.40.55/api';
+    const URL_SERVER = 'https://cupspot.io/api';
     const URL_LOCAL = 'http://127.0.0.1:8000/api';
-    const URL = URL_LOCAL
+    const URL = URL_SERVER
     const tokenEndpoint = `${URL}/login`;
 
     // Definir los datos de autenticación (por ejemplo, nombre de usuario y contraseña)

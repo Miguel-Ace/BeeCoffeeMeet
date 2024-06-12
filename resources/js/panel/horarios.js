@@ -17,13 +17,15 @@ btnEditar.forEach(item => {
         form.setAttribute('action', `/panel/horarios/${item.getAttribute('data-id')}`)
     }
 })
-
+cEditar ?
 cEditar.onclick = () => {
     modal.classList.toggle('oculto')
-}
+} : ''
+
+xEditar ?
 xEditar.onclick = () => {
     modal.classList.toggle('oculto')
-}
+} : ''
 
 
 // Evitando que seleccione un dia previamente seleccionado

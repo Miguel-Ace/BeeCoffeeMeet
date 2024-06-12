@@ -1,4 +1,5 @@
 import { api } from "../apis"
+
 async function lenguaje() {
     const cerrar = document.querySelector('.contenedor-lenguaje-soez .lenguaje-soez .cerrar span')
     const btn_modal = document.querySelector('.crear-lenguaje-soez')
@@ -11,11 +12,10 @@ async function lenguaje() {
 
     let palabras = []
 
-    const obtener_palabras_api = await api('get',`palabras_x_usuario_arreglo/${id}`)
+    const obtener_palabras_api = await api('get',`palabras_separadas`)
 
     if (obtener_palabras_api.length != 0) {
         const palabras_a_pasar = obtener_palabras_api.map(x => ({
-            id: x.id_usuario,
             palabra: x.palabras
         }))
         sessionStorage.setItem('palabras', JSON.stringify(palabras_a_pasar))
@@ -27,9 +27,10 @@ async function lenguaje() {
         iterar_palabras()
     }
 
+    btn_modal ?
     btn_modal.onclick = () => {
         contenedor.classList.toggle('activo')
-    }
+    } : ''
 
     cerrar ?
     cerrar.onclick = () => {

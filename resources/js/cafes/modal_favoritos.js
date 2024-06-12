@@ -19,7 +19,9 @@ const iterar = async (id_cafe) => {
     for (const item of await api('get','favoritos')) {
         if (item.id_local === id_cafe) {
             const p = document.createElement('p')
-            p.classList.add('datos')
+            let clases = ''
+            item.estado == 1 ? clases = 'datos' : clases = 'datos inactivo'
+            p.setAttribute('class',clases)
             p.innerHTML = `
                 <span><span class="atributo">Nombre:</span> ${item.usuarios.name}</span>
                 <span><span class="atributo">Correo:</span> ${item.usuarios.email}</span>

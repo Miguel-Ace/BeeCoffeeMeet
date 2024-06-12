@@ -58,10 +58,11 @@
   })
  })
  
+ crearCafe ?
  crearCafe.onclick = () => {
    mcc.classList.remove('oculto')
    sessionStorage.setItem('stateCreate',1)
-  }
+  } : ''
   
   btnSalirModa.onclick = () => {
     modal.classList.add('oculto')

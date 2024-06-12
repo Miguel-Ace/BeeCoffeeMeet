@@ -81,7 +81,7 @@ Route::put('/otro_cafe/update/{id}', [ApiController::class, 'updateOtroCafe'])->
 Route::delete('/otro_cafe/delete/{id}', [ApiController::class, 'deleteOtroCafe'])->middleware('auth:sanctum');
 
 // ================ Reservaciones =====================
-Route::get('/reservaciones', [ApiController::class, 'getReservaciones'])->middleware('auth:sanctum');
+Route::get('/reservaciones', [ApiController::class, 'getReservaciones']);
 Route::get('/reservaciones_x_cafe/{id_cafe}', [ApiController::class, 'getReservacionesPorCafe'])->middleware('auth:sanctum');
 Route::get('/reservaciones_x_user/{id_user}', [ApiController::class, 'getReservacionesPorUser'])->middleware('auth:sanctum');
 Route::get('/reservaciones/{id}', [ApiController::class, 'getReservacionesid'])->middleware('auth:sanctum');
@@ -110,8 +110,8 @@ Route::get('/favoritos', [ApiController::class, 'getFavoritos']);
 Route::post('/favoritos', [ApiController::class, 'insertFavoritos']);
 
 // ================ Palabras soeces =====================
-Route::get('/palabras_x_usuario/{id_user}', [ApiController::class, 'getPalabrasUsuario']);
-Route::get('/palabras_x_usuario_arreglo/{id_user}', [ApiController::class, 'getPalabrasUsuarioArreglo']);
+Route::get('/palabras_separadas', [ApiController::class, 'getPalabrasSeparadas']);
+Route::get('/palabras_soeces', [ApiController::class, 'getPalabras'])->middleware('auth:sanctum');
 Route::post('/palabras_soeces/insert', [ApiController::class, 'insertPalabras'])->middleware('auth:sanctum');
 
 // ================ Send Email =====================

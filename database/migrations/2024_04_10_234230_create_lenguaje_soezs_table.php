@@ -13,11 +13,8 @@ return new class extends Migration
     {
         Schema::create('lenguaje_soezs', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('id_usuario')->unsigned();
             $table->text('palabras');
             $table->timestamps();
-
-            $table->foreign('id_usuario')->references('id')->on('users');
         });
     }
 

@@ -37,6 +37,5 @@ catalogo.forEach(item => {
     
     if (texto == encabezadoForm.trim()) {
         item.style = 'opacity: 1;'
-        console.log(icon);
     }
 })

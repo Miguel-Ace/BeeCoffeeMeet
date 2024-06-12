@@ -11,11 +11,7 @@ class Lenguaje_soez extends Model
     public $timestamps = false;
     protected $fillable = [
         'id',
-        'id_usuario',
         'palabras',
     ];
 
-    function usuarios(){
-        return $this->belongsTo(User::class, 'id_usuario');
-    }
 }

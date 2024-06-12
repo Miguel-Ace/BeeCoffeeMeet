@@ -26,6 +26,9 @@ use App\Http\Controllers\vista\PrincipalController;
 |
 */
 
+Route::get('/policy_privacy',function (){
+    return view('politicas');
+});
 
 Route::get('/login',[LoginController::class, 'index'])->name('login');
 Route::post('/login',[LoginController::class,'store']);

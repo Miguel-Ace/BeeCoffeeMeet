@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('reservas', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('id_cafe')->unsigned();
-            $table->string('id_usuario');
+            $table->bigInteger('id_usuario')->unsigned();
             $table->string('fecha_hora');
             $table->string('fecha_hora_inicio');
             $table->string('fecha_hora_fin');
@@ -24,8 +24,8 @@ return new class extends Migration
             $table->boolean('activo');
             $table->timestamps();
 
-            $table->foreign('id_cafe')->references('id')->on('cafes')->onUpdate('cascade')->onDelete('cascade');
-            // $table->foreign('id_usuario')->references('id')->on('users')->onUpdate('cascade');
+            $table->foreign('id_cafe')->references('id')->on('cafes')->onUpdate('cascade');
+            $table->foreign('id_usuario')->references('id')->on('users')->onUpdate('cascade');
         });
     }
 

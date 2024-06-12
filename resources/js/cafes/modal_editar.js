@@ -21,7 +21,8 @@
  const latitud = mec.querySelector('.container-modal .contenido-modal form .input #latitud')
 
   // Api 
-  const server = 'http://161.22.40.55/api'
+  // const server = 'http://161.22.40.55/api'
+  const server = 'https://cupspot.io/api'
   const local = 'http://127.0.0.1:8000/api'
   const url = server
   //  const valoracion = mec.querySelector('.container-modal .contenido-modal form .input #promedio_valoracion')

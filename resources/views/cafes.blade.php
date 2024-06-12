@@ -11,6 +11,7 @@
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
 
+    <link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
     @vite([
         'resources/sass/cafes.scss',
         'resources/sass/modal.scss',
@@ -23,6 +24,8 @@
         'resources/js/cafes/cafes.js',
         'resources/js/cafes/mapa_coordenadas.js',
         'resources/js/cafes/modal_rol.js',
+        'resources/js/cafes/cafes_lista.js',
+        'resources/js/cafes/export_csv_favoritos.js',
         ])
 </head>
 <body>
@@ -58,9 +61,9 @@
         <div class="info">
             @role('su_admin')
             <p class="crear-rol">Crear <span>Rol</span></p>
+            <p class="crear-lenguaje-soez">Lenguaje soez </p>
             @endrole
             @role('admin')
-            <p class="crear-lenguaje-soez">Lenguaje soez </p>
             <p class="crear-cafe">Crear <span>Café</span></p>
             @endrole
             <form method="POST" action="{{ url('logout') }}">
@@ -74,6 +77,7 @@
     <div class="contenedor-favoritos">
         <div class="favoritos">
             <div class="cerrar">
+                <button class="expor-csv-favoritos">csv</button>
                 <span>x</span>
             </div>
             <div class="contenedor-input">
@@ -171,6 +175,45 @@
 
     <main>
         <div class="contenedor-cards">
+            @role('su_admin')
+            <div class="contenedor-todos-cafes">
+                <div class="div-tabla">
+                    <table class="tabla-cafes">
+                        <thead>
+                            <tr>
+                                <td>
+                                    <input type="text" name="" class="buscador-usuario-cafe">
+                                </td>
+                                <td>
+                                    <input type="text" name="" class="buscador-nombre-cafe">
+                                </td>
+                            </tr>
+                            <tr>
+                                {{-- <td>-</td> --}}
+                                <td>Usuario</td>
+                                <td>Café</td>
+                                <td>Descripción corta</td>
+                                <td>Descripción larga</td>
+                                <td>Logo</td>
+                                <td>Eslogan</td>
+                                <td>Cantidad de mesas</td>
+                                <td>Capacidad</td>
+                                <td>Provincia</td>
+                                <td>Canton</td>
+                                <td>Distrito</td>
+                                <td>Barrio</td>
+                                <td>Dirección</td>
+                                <td>Valoración</td>
+                                <td>Tiempo de reserva</td>
+                            </tr>
+                        </thead>
+                        <tbody class="tbody-lista-cafes"></tbody>
+                    </table>
+                </div>
+            </div>
+            @endrole
+
+            @role('admin|user')
             @foreach ($cafes as $cafe)
                 @if ($cafe->id_usuario == auth()->user()->id)
                     <div class="card">
@@ -202,6 +245,7 @@
                     </div>
                 @endif
             @endforeach
+            @endrole
         </div>
     </main>
 </body>
@@ -323,12 +367,13 @@
 <div class="modal oculto" id="mrc">
     <div class="container-modal">
         <div class="header-modal">
-            <p class="titulo-modal">Reservaciones </p>
+            <p class="titulo-modal">Reservaciones</p>
             <button class="btn-salir-modal xReservar">x</button>
         </div>
 
         <div class="contenido-modal">
-            <table>
+            <div id="wrapper"></div>
+            {{-- <table>
                 <thead>
                     <tr>
                         <td>Usuario</td>
@@ -354,7 +399,7 @@
                         </tr>
                     @endforeach
                 </tbody>
-            </table>
+            </table> --}}
         </div>
     </div>
 </div>
@@ -472,6 +517,8 @@
     </div>
 </div>
 {{-- Fin Modal Editar --}}
+
+<script src="https://unpkg.com/gridjs/dist/gridjs.umd.js"></script>
 
 <script>
     const btnReservacion = document.querySelectorAll('.btn-reservacion')

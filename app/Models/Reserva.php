@@ -27,7 +27,7 @@ class Reserva extends Model
         return $this->belongsTo(Cafe::class, 'id_cafe');
     }
 
-    // function usuarios(){
-    //     return $this->belongsTo(User::class, 'id_usuario');
-    // }
+    function usuarios(){
+        return $this->belongsTo(User::class, 'id_usuario');
+    }
 }

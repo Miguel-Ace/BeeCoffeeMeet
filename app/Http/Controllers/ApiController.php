@@ -427,7 +427,7 @@ class ApiController extends Controller
     // ================================================
     
     public function getReservaciones(){
-        return response()->json(Reserva::all()->load('cafes'),200);
+        return response()->json(Reserva::all()->load('usuarios','cafes'),200);
     }
 
     public function getReservacionesPorCafe($cafe) {
@@ -595,49 +595,41 @@ class ApiController extends Controller
 
     // ================ Palabras soeces =================
     // ===========================================
-    public function getPalabrasUsuarioArreglo($id_user){
-        $palabras_x_usuario = Lenguaje_soez::where('id_usuario', $id_user)->get();
+    public function getPalabras() {
+        $palabras = Lenguaje_soez::all();
 
-        if ($palabras_x_usuario->isEmpty()) {
+        $union_palabras = '';
+
+        foreach ($palabras as $key => $palabra) {
+            $union_palabras = $union_palabras . $palabra->palabras.',';
+        }
+
+        return response()->json($union_palabras,200);
+    }
+
+    public function getPalabrasSeparadas(){
+        $palabras = Lenguaje_soez::all();
+
+        if ($palabras->isEmpty()) {
             return response()->json([],200);
         }
 
-        // Devolver las palabras en formato JSON con código de estado 200
-        return response()->json($palabras_x_usuario, 200);
-    }
-
-    public function getPalabrasUsuario($id_user){
-        $palabras_x_usuario = Lenguaje_soez::where('id_usuario', $id_user)->get();
-
-        if ($palabras_x_usuario->isEmpty()) {
-            return response()->json(["message" => "No se encontraron palabras asociadas al usuario"],404);
-        }
-    
-        // Preparar un arreglo para almacenar las palabras
-        $palabras = '';
-    
-        // Iterar sobre las palabras obtenidas y agregarlas al arreglo
-        foreach ($palabras_x_usuario as $palabra) {
-            $palabras = $palabras . $palabra->palabras.',';
-        }
-    
         // Devolver las palabras en formato JSON con código de estado 200
         return response()->json($palabras, 200);
     }
 
     public function insertPalabras(Request $request){
-        $palabras = $request->all();
+        Lenguaje_soez::truncate();
 
-        Lenguaje_soez::where('id_usuario', $palabras[0]['id'])->delete();
-
-        foreach ($palabras as $key => $palabra) {
+        $palabras_guardar = $request->all();
+        
+        foreach ($palabras_guardar as $key => $palabra) {
            Lenguaje_soez::create([
-            'id_usuario' => $palabra['id'],
             'palabras' => $palabra['palabra']
            ]);
         }
 
-        return response()->json($palabras,200);
+        return response()->json($palabras_guardar,200);
     }
 
     // ================ Send Email =================

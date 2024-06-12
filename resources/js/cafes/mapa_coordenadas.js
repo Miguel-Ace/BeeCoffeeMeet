@@ -33,24 +33,24 @@ icoMapa.forEach(item => {
 salirMapa.onclick = () => {
     divMapa.classList.remove('activo')
 }
-divMapa.onclick = () => {
-    divMapa.classList.remove('activo')
-}
+// divMapa.onclick = () => {
+//     divMapa.classList.remove('activo')
+// }
 
 function obtenerCoordenadas() {
-  // if (navigator.geolocation) {
-  //   navigator.geolocation.getCurrentPosition(function(position) {
-  //     const latitud = position.coords.latitude;
-  //     const longitud = position.coords.longitude;
-  //     const map = L.map('map').setView([latitud, longitud], 17);
-  //     agregarMapa(map)
-  //   })
-  // } else {
-  //   const map = L.map('map').setView([9.748917, -83.753428], 8);
-  //   agregarMapa(map)
-  // }
-  const map = L.map('map').setView([9.748917, -83.753428], 8);
-  agregarMapa(map)
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      const latitud = position.coords.latitude;
+      const longitud = position.coords.longitude;
+      const map = L.map('map').setView([latitud, longitud], 17);
+      agregarMapa(map)
+    })
+  } else {
+    const map = L.map('map').setView([9.748917, -83.753428], 8);
+    agregarMapa(map)
+  }
+  // const map = L.map('map').setView([9.748917, -83.753428], 8);
+  // agregarMapa(map)
 }
 
 function agregarMapa(map) {
